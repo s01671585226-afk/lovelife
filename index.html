@@ -1,229 +1,437 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Download App</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SparkHeart • Find Your Forever</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600&display=swap');
+        
+        :root {
+            --primary: #e11d48;
+        }
+        
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+        }
+        
+        .heading-font {
+            font-family: 'Playfair Display', sans-serif;
+        }
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-    }
+        .hero-bg {
+            background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), 
+                        url('https://picsum.photos/id/1015/2000/1200') center/cover no-repeat;
+        }
 
-    body {
-      background: #0f172a;
-      color: white;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
+        .gallery-img {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .gallery-img:hover {
+            transform: scale(1.08) rotate(2deg);
+            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.4);
+        }
 
-    .container {
-      width: 100%;
-      max-width: 420px;
-      background: #111827;
-      border-radius: 20px;
-      padding: 30px;
-      text-align: center;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.4);
-    }
-
-    .badge {
-      display: inline-block;
-      background: #22c55e;
-      color: white;
-      padding: 6px 14px;
-      border-radius: 999px;
-      font-size: 13px;
-      margin-bottom: 20px;
-    }
-
-    .app-icon {
-      width: 100px;
-      height: 100px;
-      border-radius: 24px;
-      margin: auto;
-      background: linear-gradient(135deg, #06b6d4, #3b82f6);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 40px;
-      margin-bottom: 20px;
-    }
-
-    h1 {
-      font-size: 32px;
-      margin-bottom: 10px;
-    }
-
-    p {
-      color: #cbd5e1;
-      line-height: 1.6;
-      margin-bottom: 25px;
-    }
-
-    .features {
-      text-align: left;
-      margin-bottom: 25px;
-    }
-
-    .features div {
-      background: #1e293b;
-      padding: 12px;
-      border-radius: 10px;
-      margin-bottom: 10px;
-    }
-
-    .download-btn {
-      display: block;
-      width: 100%;
-      background: #22c55e;
-      color: white;
-      text-decoration: none;
-      padding: 16px;
-      border-radius: 14px;
-      font-size: 20px;
-      font-weight: bold;
-      transition: 0.3s;
-    }
-
-    .download-btn:hover {
-      background: #16a34a;
-      transform: scale(1.02);
-    }
-
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      margin-bottom: 25px;
-    }
-
-    .gallery a {
-      display: block;
-      overflow: hidden;
-      border-radius: 12px;
-      background: #1e293b;
-    }
-
-    .gallery img {
-      width: 100%;
-      height: 90px;
-      object-fit: cover;
-      transition: 0.3s;
-      display: block;
-    }
-
-    .gallery img:hover {
-      transform: scale(1.08);
-    }
-
-    .small {
-      margin-top: 18px;
-      font-size: 13px;
-      color: #94a3b8;
-    }
-
-    .counter {
-      margin-top: 14px;
-      font-size: 14px;
-      color: #22c55e;
-    }
-
-    .link-buttons {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 10px;
-      margin-top: 20px;
-      margin-bottom: 20px;
-    }
-
-    .link-buttons a {
-      background: #2563eb;
-      color: white;
-      text-decoration: none;
-      padding: 14px;
-      border-radius: 12px;
-      font-weight: bold;
-      transition: 0.3s;
-    }
-
-    .link-buttons a:hover {
-      background: #1d4ed8;
-      transform: scale(1.02);
-    }
-
-    @media(max-width:480px){
-      h1{
-        font-size:26px;
-      }
-
-      .container{
-        padding:24px;
-      }
-    }
-  </style>
+        .heart-float {
+            animation: float 3s ease-in-out infinite;
+        }
+    </style>
 </head>
-<body>
+<body class="bg-zinc-950 text-white overflow-x-hidden">
+    
+    <!-- NAVBAR -->
+    <nav class="fixed top-0 w-full z-50 bg-black/70 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-gradient-to-br from-pink-500 to-rose-600 rounded-2xl flex items-center justify-center text-2xl heart-float">
+                    ❤️
+                </div>
+                <h1 class="text-3xl font-bold tracking-tight heading-font text-white">SparkHeart</h1>
+            </div>
+            
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+                <a href="#" class="hover:text-pink-400 transition-colors">Find Matches</a>
+                <a href="#" class="hover:text-pink-400 transition-colors">Success Stories</a>
+                <a href="#" class="hover:text-pink-400 transition-colors">Safety</a>
+                <a href="#" class="hover:text-pink-400 transition-colors">Blog</a>
+            </div>
+            
+            <div class="flex items-center gap-4">
+                <button onclick="document.getElementById('login-modal').classList.remove('hidden')" 
+                        class="px-6 py-2.5 text-sm font-semibold hover:bg-white/10 rounded-full transition-all">
+                    Log In
+                </button>
+                <button onclick="document.getElementById('signup-modal').classList.remove('hidden')" 
+                        class="px-6 py-2.5 bg-white text-black font-semibold rounded-full hover:bg-pink-400 hover:text-white transition-all">
+                    Join Free
+                </button>
+            </div>
+        </div>
+    </nav>
 
-  <div class="container">
+    <!-- HERO -->
+    <section class="hero-bg min-h-screen flex items-center pt-20">
+        <div class="max-w-5xl mx-auto px-6 text-center">
+            <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-5 py-2 rounded-full text-sm mb-6 border border-white/20">
+                <span class="text-emerald-400">●</span>
+                248,392 singles online right now
+            </div>
+            
+            <h1 class="text-7xl md:text-8xl font-bold heading-font leading-tight mb-6">
+                Find the spark<br>that lasts forever
+            </h1>
+            
+            <p class="text-xl md:text-2xl text-zinc-300 max-w-2xl mx-auto mb-10">
+                Real connections. Meaningful dates. Your perfect match is waiting.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button onclick="document.getElementById('signup-modal').classList.remove('hidden')"
+                        class="px-10 py-5 bg-gradient-to-r from-pink-500 to-rose-600 text-lg font-semibold rounded-3xl hover:scale-105 transition-all shadow-2xl shadow-pink-500/30">
+                    Start Free Today
+                </button>
+                
+                <button onclick="window.scrollTo({top: document.getElementById('gallery').offsetTop - 80, behavior: 'smooth'})"
+                        class="px-10 py-5 border-2 border-white/70 text-lg font-semibold rounded-3xl hover:bg-white/10 transition-all">
+                    See Real People
+                </button>
+            </div>
+            
+            <div class="mt-12 flex items-center justify-center gap-8 text-sm">
+                <div class="flex items-center gap-2">
+                    <i class="fas fa-check text-emerald-400"></i>
+                    <span>Verified Profiles</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <i class="fas fa-check text-emerald-400"></i>
+                    <span>Smart Matching</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <i class="fas fa-check text-emerald-400"></i>
+                    <span>100% Private</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Trust logos -->
+        <div class="absolute bottom-12 left-1/2 -translate-x-1/2 flex gap-8 opacity-70 text-sm">
+            <div class="text-center">
+                <i class="fab fa-apple text-3xl"></i>
+                <p class="text-xs mt-1">App Store</p>
+            </div>
+            <div class="text-center">
+                <i class="fab fa-google-play text-3xl"></i>
+                <p class="text-xs mt-1">Play Store</p>
+            </div>
+        </div>
+    </section>
 
-    <div class="badge">SAFE & VERIFIED</div>
-
-    <div class="app-icon">⬇</div>
-
-    <h1>Download Now</h1>
-
-    <p>
-      Fast secure download with high-speed servers.
-      Compatible with Android, Windows and iPhone.
-    </p>
-
-    <div class="features">
-      <div>✔ Fast Download</div>
-      <div>✔ No Registration</div>
-      <div>✔ Mobile Friendly</div>
-      <div>✔ Secure Connection</div>
+    <!-- STATS BAR -->
+    <div class="bg-zinc-900 py-6 border-b border-white/10">
+        <div class="max-w-6xl mx-auto grid grid-cols-3 gap-6 text-center px-6">
+            <div>
+                <div class="text-4xl font-bold text-pink-400">1.2M+</div>
+                <div class="text-zinc-400 text-sm">Happy Couples</div>
+            </div>
+            <div>
+                <div class="text-4xl font-bold text-pink-400">87K</div>
+                <div class="text-zinc-400 text-sm">Matches Today</div>
+            </div>
+            <div>
+                <div class="text-4xl font-bold text-pink-400">92%</div>
+                <div class="text-zinc-400 text-sm">Success Rate</div>
+            </div>
+        </div>
     </div>
 
-    <div class="gallery">
-      <a href="https://YOUR-BACKLINK-1.com" target="_blank">
-        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1200&auto=format&fit=crop" alt="Image 1">
-      </a>
+    <!-- PHOTO GALLERY -->
+    <section id="gallery" class="py-24 bg-black">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="px-4 py-2 bg-pink-500/10 text-pink-400 rounded-full text-sm font-medium">Real People • Real Love</span>
+                <h2 class="text-5xl font-bold heading-font mt-4">Beautiful souls waiting to meet you</h2>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <!-- Gallery Images -->
+                <img src="https://picsum.photos/id/64/600/800" alt="Couple" class="gallery-img w-full h-80 object-cover rounded-3xl">
+                <img src="https://picsum.photos/id/201/600/800" alt="Woman" class="gallery-img w-full h-80 object-cover rounded-3xl">
+                <img src="https://picsum.photos/id/251/600/800" alt="Man" class="gallery-img w-full h-80 object-cover rounded-3xl">
+                <img src="https://picsum.photos/id/1005/600/800" alt="Couple" class="gallery-img w-full h-80 object-cover rounded-3xl">
+                <img src="https://picsum.photos/id/669/600/800" alt="Woman" class="gallery-img w-full h-80 object-cover rounded-3xl">
+                <img src="https://picsum.photos/id/870/600/800" alt="Man" class="gallery-img w-full h-80 object-cover rounded-3xl">
+                <img src="https://picsum.photos/id/1011/600/800" alt="Couple" class="gallery-img w-full h-80 object-cover rounded-3xl">
+                <img src="https://picsum.photos/id/133/600/800" alt="Woman" class="gallery-img w-full h-80 object-cover rounded-3xl">
+            </div>
+            
+            <div class="text-center mt-12">
+                <button onclick="document.getElementById('signup-modal').classList.remove('hidden')" 
+                        class="px-8 py-4 bg-white text-black font-semibold rounded-2xl hover:bg-pink-400 hover:text-white transition-all flex items-center gap-3 mx-auto">
+                    <span>Browse All Members</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
 
-      <a href="https://YOUR-BACKLINK-2.com" target="_blank">
-        <img src="https://images.unsplash.com/photo-1493246318656-5bfd4cfb29b8?q=80&w=1200&auto=format&fit=crop" alt="Image 2">
-      </a>
+    <!-- FEATURES -->
+    <section class="py-24 bg-zinc-900">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="text-5xl font-bold heading-font leading-tight mb-8">
+                        Designed for meaningful connections
+                    </h2>
+                    <div class="space-y-10">
+                        <div class="flex gap-6">
+                            <div class="w-12 h-12 bg-pink-500/10 rounded-2xl flex items-center justify-center text-3xl flex-shrink-0">🔥</div>
+                            <div>
+                                <h3 class="text-2xl font-semibold mb-2">Spark Matching</h3>
+                                <p class="text-zinc-400">Our AI understands chemistry better than most people.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-6">
+                            <div class="w-12 h-12 bg-pink-500/10 rounded-2xl flex items-center justify-center text-3xl flex-shrink-0">🛡️</div>
+                            <div>
+                                <h3 class="text-2xl font-semibold mb-2">Safety First</h3>
+                                <p class="text-zinc-400">Every profile is manually reviewed. Video verification available.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-6">
+                            <div class="w-12 h-12 bg-pink-500/10 rounded-2xl flex items-center justify-center text-3xl flex-shrink-0">💬</div>
+                            <div>
+                                <h3 class="text-2xl font-semibold mb-2">Real Conversations</h3>
+                                <p class="text-zinc-400">Icebreakers, voice messages, and virtual dates.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="relative">
+                    <img src="https://picsum.photos/id/1015/800/900" alt="App Preview" 
+                         class="rounded-3xl shadow-2xl shadow-black/70">
+                    <div class="absolute -bottom-6 -right-6 bg-zinc-900 p-6 rounded-3xl border border-white/10">
+                        <div class="flex items-center gap-4">
+                            <div class="text-5xl">❤️</div>
+                            <div>
+                                <div class="font-semibold">You both liked each other!</div>
+                                <div class="text-emerald-400 text-sm">It's a Spark Match ✨</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-      <a href="https://YOUR-BACKLINK-3.com" target="_blank">
-        <img src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?q=80&w=1200&auto=format&fit=crop" alt="Image 3">
-      </a>
+    <!-- DOWNLOAD APP -->
+    <section class="py-24 bg-gradient-to-br from-pink-600 via-rose-600 to-purple-700">
+        <div class="max-w-4xl mx-auto text-center px-6">
+            <h2 class="text-5xl font-bold heading-font mb-6">Take SparkHeart everywhere</h2>
+            <p class="text-xl mb-10 text-white/90">Download our app and never miss a connection</p>
+            
+            <div class="flex flex-col sm:flex-row gap-6 justify-center">
+                <a href="#" class="flex items-center gap-4 bg-black text-white px-8 py-4 rounded-3xl hover:scale-105 transition-all">
+                    <i class="fab fa-apple text-4xl"></i>
+                    <div class="text-left">
+                        <div class="text-xs">Download on the</div>
+                        <div class="text-xl font-semibold">App Store</div>
+                    </div>
+                </a>
+                
+                <a href="#" class="flex items-center gap-4 bg-black text-white px-8 py-4 rounded-3xl hover:scale-105 transition-all">
+                    <i class="fab fa-google-play text-4xl"></i>
+                    <div class="text-left">
+                        <div class="text-xs">GET IT ON</div>
+                        <div class="text-xl font-semibold">Google Play</div>
+                    </div>
+                </a>
+            </div>
+            
+            <p class="mt-12 text-sm opacity-75">4.9 ★★★★☆ • Over 850,000 reviews</p>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="py-24 bg-black">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-center text-5xl font-bold heading-font mb-16">Love stories that started here</h2>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-zinc-900 p-8 rounded-3xl">
+                    <div class="flex gap-1 text-amber-400 mb-6">★★★★★</div>
+                    <p class="italic text-zinc-300 mb-6">"We matched on a Tuesday and got married 11 months later. Thank you SparkHeart!"</p>
+                    <div class="flex items-center gap-3">
+                        <img src="https://picsum.photos/id/64/80/80" class="w-10 h-10 rounded-full object-cover">
+                        <div>
+                            <div>Sarah & Michael</div>
+                            <div class="text-xs text-zinc-500">Married • New York</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-zinc-900 p-8 rounded-3xl">
+                    <div class="flex gap-1 text-amber-400 mb-6">★★★★★</div>
+                    <p class="italic text-zinc-300 mb-6">"The best decision I ever made. Found my soulmate after only 3 weeks."</p>
+                    <div class="flex items-center gap-3">
+                        <img src="https://picsum.photos/id/201/80/80" class="w-10 h-10 rounded-full object-cover">
+                        <div>
+                            <div>Priya Sharma</div>
+                            <div class="text-xs text-zinc-500">Mumbai</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-zinc-900 p-8 rounded-3xl">
+                    <div class="flex gap-1 text-amber-400 mb-6">★★★★☆</div>
+                    <p class="italic text-zinc-300 mb-6">"Finally a dating app that feels genuine. Highly recommend!"</p>
+                    <div class="flex items-center gap-3">
+                        <img src="https://picsum.photos/id/870/80/80" class="w-10 h-10 rounded-full object-cover">
+                        <div>
+                            <div>James Chen</div>
+                            <div class="text-xs text-zinc-500">Los Angeles</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="py-28 bg-zinc-950 border-t border-white/10">
+        <div class="max-w-2xl mx-auto text-center px-6">
+            <h2 class="text-6xl font-bold heading-font mb-6">Ready to find your person?</h2>
+            <p class="text-2xl text-zinc-400 mb-10">Join thousands of singles finding love every day.</p>
+            
+            <button onclick="document.getElementById('signup-modal').classList.remove('hidden')"
+                    class="px-16 py-7 text-2xl font-semibold bg-gradient-to-r from-pink-500 to-rose-600 rounded-3xl hover:scale-110 transition-all shadow-2xl shadow-pink-600/50">
+                Create Free Account
+            </button>
+            
+            <p class="text-xs text-zinc-500 mt-8">Takes less than 60 seconds • Cancel anytime</p>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-black py-16 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-5 gap-10">
+            <div class="md:col-span-2">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-9 h-9 bg-gradient-to-br from-pink-500 to-rose-600 rounded-2xl flex items-center justify-center text-3xl">❤️</div>
+                    <span class="text-3xl font-bold heading-font">SparkHeart</span>
+                </div>
+                <p class="text-zinc-400 max-w-xs">Modern dating that actually works. Made with love in 2026.</p>
+            </div>
+            
+            <div>
+                <h4 class="font-semibold mb-4">Company</h4>
+                <ul class="space-y-3 text-sm text-zinc-400">
+                    <li><a href="#" class="hover:text-white">About Us</a></li>
+                    <li><a href="#" class="hover:text-white">Careers</a></li>
+                    <li><a href="#" class="hover:text-white">Press</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h4 class="font-semibold mb-4">Product</h4>
+                <ul class="space-y-3 text-sm text-zinc-400">
+                    <li><a href="#" class="hover:text-white">Download App</a></li>
+                    <li><a href="#" class="hover:text-white">Premium</a></li>
+                    <li><a href="#" class="hover:text-white">Safety Tips</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h4 class="font-semibold mb-4">Support</h4>
+                <ul class="space-y-3 text-sm text-zinc-400">
+                    <li><a href="#" class="hover:text-white">Help Center</a></li>
+                    <li><a href="#" class="hover:text-white">Contact</a></li>
+                    <li><a href="#" class="hover:text-white">Community Guidelines</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="text-center text-xs text-zinc-500 mt-16">
+            © 2026 SparkHeart. All rights reserved. Made for love.
+        </div>
+    </footer>
+
+    <!-- SIGNUP MODAL -->
+    <div id="signup-modal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-[100] flex items-center justify-center">
+        <div class="bg-zinc-900 rounded-3xl max-w-md w-full mx-4 overflow-hidden">
+            <div class="p-8">
+                <div class="flex justify-between items-center mb-8">
+                    <h3 class="text-3xl font-bold heading-font">Join SparkHeart</h3>
+                    <button onclick="document.getElementById('signup-modal').classList.add('hidden')" class="text-3xl leading-none">×</button>
+                </div>
+                
+                <div class="space-y-4">
+                    <input type="text" placeholder="Full Name" class="w-full bg-zinc-800 border border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-pink-400">
+                    <input type="email" placeholder="Email Address" class="w-full bg-zinc-800 border border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-pink-400">
+                    <input type="password" placeholder="Create Password" class="w-full bg-zinc-800 border border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-pink-400">
+                    
+                    <button onclick="alert('Welcome to SparkHeart! 🎉 (This is a demo)')" 
+                            class="w-full py-5 bg-gradient-to-r from-pink-500 to-rose-600 rounded-2xl font-semibold text-lg mt-6">
+                        Create My Account
+                    </button>
+                </div>
+                
+                <p class="text-center text-xs text-zinc-500 mt-8">
+                    By signing up you agree to our Terms and Privacy Policy
+                </p>
+            </div>
+        </div>
     </div>
 
-    <a class="download-btn" href="https://YOUR-LINK-HERE.com" target="_blank">
-      Continue
-    </a>
-
-    <div class="counter">
-      12,487 users downloaded today
+    <!-- LOGIN MODAL -->
+    <div id="login-modal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-[100] flex items-center justify-center">
+        <div class="bg-zinc-900 rounded-3xl max-w-md w-full mx-4 overflow-hidden">
+            <div class="p-8">
+                <div class="flex justify-between items-center mb-8">
+                    <h3 class="text-3xl font-bold heading-font">Welcome Back</h3>
+                    <button onclick="document.getElementById('login-modal').classList.add('hidden')" class="text-3xl leading-none">×</button>
+                </div>
+                
+                <div class="space-y-4">
+                    <input type="email" placeholder="Email" class="w-full bg-zinc-800 border border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-pink-400">
+                    <input type="password" placeholder="Password" class="w-full bg-zinc-800 border border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-pink-400">
+                    
+                    <button onclick="alert('Logged in successfully! (Demo)')" 
+                            class="w-full py-5 bg-white text-black rounded-2xl font-semibold text-lg mt-6">
+                        Log In
+                    </button>
+                </div>
+                
+                <div class="text-center mt-8">
+                    <a href="#" class="text-pink-400 text-sm">Forgot password?</a>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="link-buttons">
-      <a href="https://YOUR-LINK-1.com" target="_blank">Link 1</a>
-      <a href="https://YOUR-LINK-2.com" target="_blank">Link 2</a>
-      <a href="https://YOUR-LINK-3.com" target="_blank">Link 3</a>
-    </div>
-
-    <div class="small">
-      By continuing, you agree to our terms and privacy policy.
-    </div>
-
-  </div>
-
+    <script>
+        // Tailwind script already included via CDN
+        console.log('%cSparkHeart Landing Page Loaded ❤️', 'color: #e11d48; font-size: 14px;');
+        
+        // Close modals when clicking outside
+        document.addEventListener('click', function(e) {
+            const signupModal = document.getElementById('signup-modal');
+            const loginModal = document.getElementById('login-modal');
+            
+            if (e.target === signupModal) signupModal.classList.add('hidden');
+            if (e.target === loginModal) loginModal.classList.add('hidden');
+        });
+        
+        // Keyboard escape support
+        document.addEventListener('keydown', function(e) {
+            if (e.key === "Escape") {
+                document.getElementById('signup-modal').classList.add('hidden');
+                document.getElementById('login-modal').classList.add('hidden');
+            }
+        });
+    </script>
 </body>
 </html>
