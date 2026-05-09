@@ -3,435 +3,228 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SparkHeart • Find Your Forever</title>
+    <title>LoveLife • Find Your Forever</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600&display=swap');
         
-        :root {
-            --primary: #e11d48;
-        }
-        
-        body {
-            font-family: 'Inter', system-ui, sans-serif;
-        }
-        
-        .heading-font {
-            font-family: 'Playfair Display', sans-serif;
-        }
+        body { font-family: 'Inter', sans-serif; }
+        .heading-font { font-family: 'Playfair Display', sans-serif; }
 
         .hero-bg {
-            background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), 
-                        url('https://picsum.photos/id/1015/2000/1200') center/cover no-repeat;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)), 
+                        url('https://picsum.photos/id/1015/2000/1200') center/cover;
         }
 
         .gallery-img {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s ease;
         }
-        
         .gallery-img:hover {
-            transform: scale(1.08) rotate(2deg);
-            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.4);
+            transform: scale(1.08);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.5);
         }
 
-        .heart-float {
-            animation: float 3s ease-in-out infinite;
+        /* Lightbox */
+        #lightbox {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.95);
+            z-index: 200;
+            align-items: center;
+            justify-content: center;
+        }
+        #lightbox img {
+            max-height: 90vh;
+            max-width: 90vw;
+            border-radius: 12px;
         }
     </style>
 </head>
-<body class="bg-zinc-950 text-white overflow-x-hidden">
-    
-    <!-- NAVBAR -->
-    <nav class="fixed top-0 w-full z-50 bg-black/70 backdrop-blur-md border-b border-white/10">
-        <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+<body class="bg-zinc-950 text-white">
+
+    <!-- Adsterra Top Banner -->
+    <div class="bg-black border-b border-pink-500/30 py-2 text-center text-sm">
+        <a href="https://www.profitablecpmratenetwork.com/d7ctaq4g?key=163059a9717a51ba0b50a9a9fd33df31" target="_blank" class="inline-flex items-center gap-2 hover:text-pink-400">
+            <span class="text-pink-400">❤️</span>
+            Sponsored: Meet 1000+ Singles in Your City Today 
+            <span class="text-pink-400">→</span>
+        </a>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="fixed top-0 w-full z-50 bg-black/80 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
             <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-gradient-to-br from-pink-500 to-rose-600 rounded-2xl flex items-center justify-center text-2xl heart-float">
-                    ❤️
-                </div>
-                <h1 class="text-3xl font-bold tracking-tight heading-font text-white">SparkHeart</h1>
+                <div class="text-3xl">❤️</div>
+                <h1 class="text-3xl font-bold heading-font">LoveLife</h1>
             </div>
-            
-            <div class="hidden md:flex items-center gap-8 text-sm font-medium">
-                <a href="#" class="hover:text-pink-400 transition-colors">Find Matches</a>
-                <a href="#" class="hover:text-pink-400 transition-colors">Success Stories</a>
-                <a href="#" class="hover:text-pink-400 transition-colors">Safety</a>
-                <a href="#" class="hover:text-pink-400 transition-colors">Blog</a>
-            </div>
-            
-            <div class="flex items-center gap-4">
-                <button onclick="document.getElementById('login-modal').classList.remove('hidden')" 
-                        class="px-6 py-2.5 text-sm font-semibold hover:bg-white/10 rounded-full transition-all">
-                    Log In
-                </button>
-                <button onclick="document.getElementById('signup-modal').classList.remove('hidden')" 
-                        class="px-6 py-2.5 bg-white text-black font-semibold rounded-full hover:bg-pink-400 hover:text-white transition-all">
-                    Join Free
-                </button>
-            </div>
+            <button onclick="document.getElementById('signup-modal').classList.remove('hidden')" 
+                    class="bg-white text-black px-6 py-2.5 rounded-full font-semibold hover:bg-pink-500 hover:text-white transition-all">
+                Join Free
+            </button>
         </div>
     </nav>
 
-    <!-- HERO -->
+    <!-- Hero -->
     <section class="hero-bg min-h-screen flex items-center pt-20">
         <div class="max-w-5xl mx-auto px-6 text-center">
-            <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-5 py-2 rounded-full text-sm mb-6 border border-white/20">
-                <span class="text-emerald-400">●</span>
-                248,392 singles online right now
-            </div>
-            
-            <h1 class="text-7xl md:text-8xl font-bold heading-font leading-tight mb-6">
-                Find the spark<br>that lasts forever
+            <h1 class="text-6xl md:text-7xl font-bold heading-font leading-tight mb-6">
+                Find Love That Feels Real
             </h1>
-            
-            <p class="text-xl md:text-2xl text-zinc-300 max-w-2xl mx-auto mb-10">
-                Real connections. Meaningful dates. Your perfect match is waiting.
-            </p>
+            <p class="text-xl text-zinc-200 mb-10">Join thousands of singles looking for meaningful connections.</p>
             
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <button onclick="document.getElementById('signup-modal').classList.remove('hidden')"
-                        class="px-10 py-5 bg-gradient-to-r from-pink-500 to-rose-600 text-lg font-semibold rounded-3xl hover:scale-105 transition-all shadow-2xl shadow-pink-500/30">
-                    Start Free Today
+                <button onclick="document.getElementById('signup-modal').classList.remove('hidden')" 
+                        class="px-10 py-5 bg-pink-600 text-lg font-semibold rounded-3xl hover:scale-105 transition-all">
+                    Start Free Now
                 </button>
-                
-                <button onclick="window.scrollTo({top: document.getElementById('gallery').offsetTop - 80, behavior: 'smooth'})"
-                        class="px-10 py-5 border-2 border-white/70 text-lg font-semibold rounded-3xl hover:bg-white/10 transition-all">
-                    See Real People
-                </button>
-            </div>
-            
-            <div class="mt-12 flex items-center justify-center gap-8 text-sm">
-                <div class="flex items-center gap-2">
-                    <i class="fas fa-check text-emerald-400"></i>
-                    <span>Verified Profiles</span>
-                </div>
-                <div class="flex items-center gap-2">
-                    <i class="fas fa-check text-emerald-400"></i>
-                    <span>Smart Matching</span>
-                </div>
-                <div class="flex items-center gap-2">
-                    <i class="fas fa-check text-emerald-400"></i>
-                    <span>100% Private</span>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Trust logos -->
-        <div class="absolute bottom-12 left-1/2 -translate-x-1/2 flex gap-8 opacity-70 text-sm">
-            <div class="text-center">
-                <i class="fab fa-apple text-3xl"></i>
-                <p class="text-xs mt-1">App Store</p>
-            </div>
-            <div class="text-center">
-                <i class="fab fa-google-play text-3xl"></i>
-                <p class="text-xs mt-1">Play Store</p>
             </div>
         </div>
     </section>
 
-    <!-- STATS BAR -->
-    <div class="bg-zinc-900 py-6 border-b border-white/10">
-        <div class="max-w-6xl mx-auto grid grid-cols-3 gap-6 text-center px-6">
-            <div>
-                <div class="text-4xl font-bold text-pink-400">1.2M+</div>
-                <div class="text-zinc-400 text-sm">Happy Couples</div>
+    <!-- Photo Album Gallery -->
+    <section class="py-20 bg-black" id="gallery">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex justify-between items-end mb-10">
+                <div>
+                    <h2 class="text-4xl font-bold heading-font">Photo Album</h2>
+                    <p class="text-zinc-400">Real members • Real photos</p>
+                </div>
+                <button onclick="document.getElementById('signup-modal').classList.remove('hidden')" 
+                        class="text-pink-400 hover:underline">View All Members →</button>
             </div>
-            <div>
-                <div class="text-4xl font-bold text-pink-400">87K</div>
-                <div class="text-zinc-400 text-sm">Matches Today</div>
-            </div>
-            <div>
-                <div class="text-4xl font-bold text-pink-400">92%</div>
-                <div class="text-zinc-400 text-sm">Success Rate</div>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="photo-grid">
+                <!-- Images will be populated by JS -->
             </div>
         </div>
+    </section>
+
+    <!-- Adsterra Banner (Sidebar Style) -->
+    <div class="max-w-7xl mx-auto px-6 py-8">
+        <a href="https://www.profitablecpmratenetwork.com/d7ctaq4g?key=163059a9717a51ba0b50a9a9fd33df31" target="_blank" 
+           class="block bg-gradient-to-r from-purple-600 to-pink-600 rounded-3xl p-8 text-center hover:scale-105 transition-all">
+            <span class="text-sm uppercase tracking-widest">Adsterra Sponsored</span>
+            <h3 class="text-3xl font-bold mt-2">Looking for Casual Dates Tonight?</h3>
+            <p class="mt-3 text-lg">Click here and meet local singles instantly →</p>
+        </a>
     </div>
 
-    <!-- PHOTO GALLERY -->
-    <section id="gallery" class="py-24 bg-black">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <span class="px-4 py-2 bg-pink-500/10 text-pink-400 rounded-full text-sm font-medium">Real People • Real Love</span>
-                <h2 class="text-5xl font-bold heading-font mt-4">Beautiful souls waiting to meet you</h2>
-            </div>
-            
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                <!-- Gallery Images -->
-                <img src="https://picsum.photos/id/64/600/800" alt="Couple" class="gallery-img w-full h-80 object-cover rounded-3xl">
-                <img src="https://picsum.photos/id/201/600/800" alt="Woman" class="gallery-img w-full h-80 object-cover rounded-3xl">
-                <img src="https://picsum.photos/id/251/600/800" alt="Man" class="gallery-img w-full h-80 object-cover rounded-3xl">
-                <img src="https://picsum.photos/id/1005/600/800" alt="Couple" class="gallery-img w-full h-80 object-cover rounded-3xl">
-                <img src="https://picsum.photos/id/669/600/800" alt="Woman" class="gallery-img w-full h-80 object-cover rounded-3xl">
-                <img src="https://picsum.photos/id/870/600/800" alt="Man" class="gallery-img w-full h-80 object-cover rounded-3xl">
-                <img src="https://picsum.photos/id/1011/600/800" alt="Couple" class="gallery-img w-full h-80 object-cover rounded-3xl">
-                <img src="https://picsum.photos/id/133/600/800" alt="Woman" class="gallery-img w-full h-80 object-cover rounded-3xl">
-            </div>
-            
-            <div class="text-center mt-12">
-                <button onclick="document.getElementById('signup-modal').classList.remove('hidden')" 
-                        class="px-8 py-4 bg-white text-black font-semibold rounded-2xl hover:bg-pink-400 hover:text-white transition-all flex items-center gap-3 mx-auto">
-                    <span>Browse All Members</span>
-                    <i class="fas fa-arrow-right"></i>
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- FEATURES -->
-    <section class="py-24 bg-zinc-900">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="grid md:grid-cols-2 gap-16 items-center">
-                <div>
-                    <h2 class="text-5xl font-bold heading-font leading-tight mb-8">
-                        Designed for meaningful connections
-                    </h2>
-                    <div class="space-y-10">
-                        <div class="flex gap-6">
-                            <div class="w-12 h-12 bg-pink-500/10 rounded-2xl flex items-center justify-center text-3xl flex-shrink-0">🔥</div>
-                            <div>
-                                <h3 class="text-2xl font-semibold mb-2">Spark Matching</h3>
-                                <p class="text-zinc-400">Our AI understands chemistry better than most people.</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-6">
-                            <div class="w-12 h-12 bg-pink-500/10 rounded-2xl flex items-center justify-center text-3xl flex-shrink-0">🛡️</div>
-                            <div>
-                                <h3 class="text-2xl font-semibold mb-2">Safety First</h3>
-                                <p class="text-zinc-400">Every profile is manually reviewed. Video verification available.</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-6">
-                            <div class="w-12 h-12 bg-pink-500/10 rounded-2xl flex items-center justify-center text-3xl flex-shrink-0">💬</div>
-                            <div>
-                                <h3 class="text-2xl font-semibold mb-2">Real Conversations</h3>
-                                <p class="text-zinc-400">Icebreakers, voice messages, and virtual dates.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="relative">
-                    <img src="https://picsum.photos/id/1015/800/900" alt="App Preview" 
-                         class="rounded-3xl shadow-2xl shadow-black/70">
-                    <div class="absolute -bottom-6 -right-6 bg-zinc-900 p-6 rounded-3xl border border-white/10">
-                        <div class="flex items-center gap-4">
-                            <div class="text-5xl">❤️</div>
-                            <div>
-                                <div class="font-semibold">You both liked each other!</div>
-                                <div class="text-emerald-400 text-sm">It's a Spark Match ✨</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- DOWNLOAD APP -->
-    <section class="py-24 bg-gradient-to-br from-pink-600 via-rose-600 to-purple-700">
+    <!-- Download Section -->
+    <section class="py-20 bg-zinc-900">
         <div class="max-w-4xl mx-auto text-center px-6">
-            <h2 class="text-5xl font-bold heading-font mb-6">Take SparkHeart everywhere</h2>
-            <p class="text-xl mb-10 text-white/90">Download our app and never miss a connection</p>
+            <h2 class="text-5xl font-bold heading-font mb-4">Download LoveLife App</h2>
+            <p class="text-xl text-zinc-400 mb-10">Get matches on the go. Available on iOS & Android.</p>
             
             <div class="flex flex-col sm:flex-row gap-6 justify-center">
-                <a href="#" class="flex items-center gap-4 bg-black text-white px-8 py-4 rounded-3xl hover:scale-105 transition-all">
-                    <i class="fab fa-apple text-4xl"></i>
+                <a href="#" class="flex-1 max-w-xs mx-auto bg-black border border-white/30 hover:border-white rounded-3xl p-6 flex items-center gap-5 transition-all">
+                    <i class="fab fa-apple text-5xl"></i>
                     <div class="text-left">
-                        <div class="text-xs">Download on the</div>
-                        <div class="text-xl font-semibold">App Store</div>
+                        <div class="text-sm">Download on the</div>
+                        <div class="text-2xl font-semibold">App Store</div>
                     </div>
                 </a>
                 
-                <a href="#" class="flex items-center gap-4 bg-black text-white px-8 py-4 rounded-3xl hover:scale-105 transition-all">
-                    <i class="fab fa-google-play text-4xl"></i>
+                <a href="#" class="flex-1 max-w-xs mx-auto bg-black border border-white/30 hover:border-white rounded-3xl p-6 flex items-center gap-5 transition-all">
+                    <i class="fab fa-google-play text-5xl"></i>
                     <div class="text-left">
-                        <div class="text-xs">GET IT ON</div>
-                        <div class="text-xl font-semibold">Google Play</div>
+                        <div class="text-sm">GET IT ON</div>
+                        <div class="text-2xl font-semibold">Google Play</div>
                     </div>
                 </a>
             </div>
-            
-            <p class="mt-12 text-sm opacity-75">4.9 ★★★★☆ • Over 850,000 reviews</p>
         </div>
     </section>
 
-    <!-- TESTIMONIALS -->
-    <section class="py-24 bg-black">
-        <div class="max-w-6xl mx-auto px-6">
-            <h2 class="text-center text-5xl font-bold heading-font mb-16">Love stories that started here</h2>
-            
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-zinc-900 p-8 rounded-3xl">
-                    <div class="flex gap-1 text-amber-400 mb-6">★★★★★</div>
-                    <p class="italic text-zinc-300 mb-6">"We matched on a Tuesday and got married 11 months later. Thank you SparkHeart!"</p>
-                    <div class="flex items-center gap-3">
-                        <img src="https://picsum.photos/id/64/80/80" class="w-10 h-10 rounded-full object-cover">
-                        <div>
-                            <div>Sarah & Michael</div>
-                            <div class="text-xs text-zinc-500">Married • New York</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="bg-zinc-900 p-8 rounded-3xl">
-                    <div class="flex gap-1 text-amber-400 mb-6">★★★★★</div>
-                    <p class="italic text-zinc-300 mb-6">"The best decision I ever made. Found my soulmate after only 3 weeks."</p>
-                    <div class="flex items-center gap-3">
-                        <img src="https://picsum.photos/id/201/80/80" class="w-10 h-10 rounded-full object-cover">
-                        <div>
-                            <div>Priya Sharma</div>
-                            <div class="text-xs text-zinc-500">Mumbai</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="bg-zinc-900 p-8 rounded-3xl">
-                    <div class="flex gap-1 text-amber-400 mb-6">★★★★☆</div>
-                    <p class="italic text-zinc-300 mb-6">"Finally a dating app that feels genuine. Highly recommend!"</p>
-                    <div class="flex items-center gap-3">
-                        <img src="https://picsum.photos/id/870/80/80" class="w-10 h-10 rounded-full object-cover">
-                        <div>
-                            <div>James Chen</div>
-                            <div class="text-xs text-zinc-500">Los Angeles</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FINAL CTA -->
-    <section class="py-28 bg-zinc-950 border-t border-white/10">
-        <div class="max-w-2xl mx-auto text-center px-6">
-            <h2 class="text-6xl font-bold heading-font mb-6">Ready to find your person?</h2>
-            <p class="text-2xl text-zinc-400 mb-10">Join thousands of singles finding love every day.</p>
-            
-            <button onclick="document.getElementById('signup-modal').classList.remove('hidden')"
-                    class="px-16 py-7 text-2xl font-semibold bg-gradient-to-r from-pink-500 to-rose-600 rounded-3xl hover:scale-110 transition-all shadow-2xl shadow-pink-600/50">
-                Create Free Account
-            </button>
-            
-            <p class="text-xs text-zinc-500 mt-8">Takes less than 60 seconds • Cancel anytime</p>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="bg-black py-16 border-t border-white/10">
-        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-5 gap-10">
-            <div class="md:col-span-2">
-                <div class="flex items-center gap-3 mb-6">
-                    <div class="w-9 h-9 bg-gradient-to-br from-pink-500 to-rose-600 rounded-2xl flex items-center justify-center text-3xl">❤️</div>
-                    <span class="text-3xl font-bold heading-font">SparkHeart</span>
-                </div>
-                <p class="text-zinc-400 max-w-xs">Modern dating that actually works. Made with love in 2026.</p>
-            </div>
-            
-            <div>
-                <h4 class="font-semibold mb-4">Company</h4>
-                <ul class="space-y-3 text-sm text-zinc-400">
-                    <li><a href="#" class="hover:text-white">About Us</a></li>
-                    <li><a href="#" class="hover:text-white">Careers</a></li>
-                    <li><a href="#" class="hover:text-white">Press</a></li>
-                </ul>
-            </div>
-            
-            <div>
-                <h4 class="font-semibold mb-4">Product</h4>
-                <ul class="space-y-3 text-sm text-zinc-400">
-                    <li><a href="#" class="hover:text-white">Download App</a></li>
-                    <li><a href="#" class="hover:text-white">Premium</a></li>
-                    <li><a href="#" class="hover:text-white">Safety Tips</a></li>
-                </ul>
-            </div>
-            
-            <div>
-                <h4 class="font-semibold mb-4">Support</h4>
-                <ul class="space-y-3 text-sm text-zinc-400">
-                    <li><a href="#" class="hover:text-white">Help Center</a></li>
-                    <li><a href="#" class="hover:text-white">Contact</a></li>
-                    <li><a href="#" class="hover:text-white">Community Guidelines</a></li>
-                </ul>
-            </div>
-        </div>
-        
-        <div class="text-center text-xs text-zinc-500 mt-16">
-            © 2026 SparkHeart. All rights reserved. Made for love.
-        </div>
-    </footer>
-
-    <!-- SIGNUP MODAL -->
-    <div id="signup-modal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-[100] flex items-center justify-center">
-        <div class="bg-zinc-900 rounded-3xl max-w-md w-full mx-4 overflow-hidden">
-            <div class="p-8">
-                <div class="flex justify-between items-center mb-8">
-                    <h3 class="text-3xl font-bold heading-font">Join SparkHeart</h3>
-                    <button onclick="document.getElementById('signup-modal').classList.add('hidden')" class="text-3xl leading-none">×</button>
-                </div>
-                
-                <div class="space-y-4">
-                    <input type="text" placeholder="Full Name" class="w-full bg-zinc-800 border border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-pink-400">
-                    <input type="email" placeholder="Email Address" class="w-full bg-zinc-800 border border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-pink-400">
-                    <input type="password" placeholder="Create Password" class="w-full bg-zinc-800 border border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-pink-400">
-                    
-                    <button onclick="alert('Welcome to SparkHeart! 🎉 (This is a demo)')" 
-                            class="w-full py-5 bg-gradient-to-r from-pink-500 to-rose-600 rounded-2xl font-semibold text-lg mt-6">
-                        Create My Account
-                    </button>
-                </div>
-                
-                <p class="text-center text-xs text-zinc-500 mt-8">
-                    By signing up you agree to our Terms and Privacy Policy
-                </p>
-            </div>
-        </div>
+    <!-- Lightbox Photo Viewer -->
+    <div id="lightbox" onclick="if(event.target === this) closeLightbox()">
+        <img id="lightbox-image" src="" alt="">
+        <button onclick="prevImage()" class="absolute left-8 top-1/2 text-4xl bg-black/50 hover:bg-black/70 w-14 h-14 rounded-full flex items-center justify-center">
+            ←
+        </button>
+        <button onclick="nextImage()" class="absolute right-8 top-1/2 text-4xl bg-black/50 hover:bg-black/70 w-14 h-14 rounded-full flex items-center justify-center">
+            →
+        </button>
+        <button onclick="closeLightbox()" class="absolute top-8 right-8 text-4xl bg-black/50 hover:bg-black/70 w-14 h-14 rounded-full flex items-center justify-center">
+            ✕
+        </button>
     </div>
 
-    <!-- LOGIN MODAL -->
-    <div id="login-modal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-[100] flex items-center justify-center">
-        <div class="bg-zinc-900 rounded-3xl max-w-md w-full mx-4 overflow-hidden">
-            <div class="p-8">
-                <div class="flex justify-between items-center mb-8">
-                    <h3 class="text-3xl font-bold heading-font">Welcome Back</h3>
-                    <button onclick="document.getElementById('login-modal').classList.add('hidden')" class="text-3xl leading-none">×</button>
-                </div>
-                
-                <div class="space-y-4">
-                    <input type="email" placeholder="Email" class="w-full bg-zinc-800 border border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-pink-400">
-                    <input type="password" placeholder="Password" class="w-full bg-zinc-800 border border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-pink-400">
-                    
-                    <button onclick="alert('Logged in successfully! (Demo)')" 
-                            class="w-full py-5 bg-white text-black rounded-2xl font-semibold text-lg mt-6">
-                        Log In
-                    </button>
-                </div>
-                
-                <div class="text-center mt-8">
-                    <a href="#" class="text-pink-400 text-sm">Forgot password?</a>
-                </div>
-            </div>
+    <!-- Sign Up Modal -->
+    <div id="signup-modal" class="hidden fixed inset-0 bg-black/90 z-[100] flex items-center justify-center">
+        <div class="bg-zinc-900 rounded-3xl w-full max-w-md p-8">
+            <h3 class="text-3xl font-bold mb-6">Create Your Free Account</h3>
+            <button onclick="alert('Account Created! (Demo)')" 
+                    class="w-full py-6 bg-pink-600 rounded-2xl text-xl font-semibold">
+                Join LoveLife Now
+            </button>
+            <button onclick="document.getElementById('signup-modal').classList.add('hidden')" 
+                    class="mt-4 w-full py-4 text-zinc-400">Close</button>
         </div>
     </div>
 
     <script>
-        // Tailwind script already included via CDN
-        console.log('%cSparkHeart Landing Page Loaded ❤️', 'color: #e11d48; font-size: 14px;');
-        
-        // Close modals when clicking outside
-        document.addEventListener('click', function(e) {
-            const signupModal = document.getElementById('signup-modal');
-            const loginModal = document.getElementById('login-modal');
+        // Sample photos
+        const photos = [
+            "https://picsum.photos/id/64/800/1000",
+            "https://picsum.photos/id/201/800/1000",
+            "https://picsum.photos/id/251/800/1000",
+            "https://picsum.photos/id/1005/800/1000",
+            "https://picsum.photos/id/669/800/1000",
+            "https://picsum.photos/id/870/800/1000",
+            "https://picsum.photos/id/1011/800/1000",
+            "https://picsum.photos/id/133/800/1000"
+        ];
+
+        let currentIndex = 0;
+
+        // Render Gallery
+        function renderGallery() {
+            const grid = document.getElementById('photo-grid');
+            grid.innerHTML = '';
             
-            if (e.target === signupModal) signupModal.classList.add('hidden');
-            if (e.target === loginModal) loginModal.classList.add('hidden');
-        });
-        
-        // Keyboard escape support
-        document.addEventListener('keydown', function(e) {
-            if (e.key === "Escape") {
-                document.getElementById('signup-modal').classList.add('hidden');
-                document.getElementById('login-modal').classList.add('hidden');
+            photos.forEach((src, index) => {
+                const div = document.createElement('div');
+                div.className = "overflow-hidden rounded-3xl cursor-pointer";
+                div.innerHTML = `<img src="${src}" class="gallery-img w-full h-80 object-cover" onclick="openLightbox(${index})">`;
+                grid.appendChild(div);
+            });
+        }
+
+        // Lightbox Functions
+        function openLightbox(index) {
+            currentIndex = index;
+            document.getElementById('lightbox').style.display = 'flex';
+            document.getElementById('lightbox-image').src = photos[currentIndex];
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
+
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % photos.length;
+            document.getElementById('lightbox-image').src = photos[currentIndex];
+        }
+
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + photos.length) % photos.length;
+            document.getElementById('lightbox-image').src = photos[currentIndex];
+        }
+
+        // Keyboard support
+        document.addEventListener('keydown', (e) => {
+            if (document.getElementById('lightbox').style.display === 'flex') {
+                if (e.key === "ArrowRight") nextImage();
+                if (e.key === "ArrowLeft") prevImage();
+                if (e.key === "Escape") closeLightbox();
             }
         });
+
+        // Initialize
+        window.onload = renderGallery;
     </script>
 </body>
 </html>
