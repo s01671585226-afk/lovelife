@@ -13,23 +13,9 @@
         .heading { font-family: 'Playfair Display', sans-serif; }
 
         .hero-bg {
-            background: linear-gradient(135deg, rgba(190,18,60,0.9), rgba(126,34,206,0.85)), 
+            background: linear-gradient(135deg, rgba(190,18,60,0.85), rgba(126,34,206,0.8)), 
                         url('images/hero-bg.jpg') center/cover no-repeat fixed;
-        }
-
-        .gallery-img:hover { 
-            transform: scale(1.08); 
-            transition: all 0.4s ease; 
-        }
-        
-        #lightbox {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.97);
-            z-index: 9999;
-            align-items: center;
-            justify-content: center;
+            min-height: 100vh;
         }
     </style>
 </head>
@@ -55,17 +41,40 @@
         </div>
     </nav>
 
-    <!-- Hero -->
-    <section class="hero-bg min-h-screen flex items-center pt-20">
+    <!-- ==================== REMODELED HERO SECTION ==================== -->
+    <section class="hero-bg flex items-center pt-20">
         <div class="max-w-6xl mx-auto px-6 text-center">
-            <h1 class="text-6xl md:text-7xl lg:text-8xl font-bold heading leading-none mb-6">
-                Find Love That Lasts
+            <h1 class="text-6xl md:text-7xl lg:text-8xl font-bold heading leading-tight mb-6">
+                Find Love That<br>Lasts Forever
             </h1>
-            <p class="text-2xl text-zinc-100 max-w-2xl mx-auto">Real People • Real Connections</p>
+            <p class="text-2xl md:text-3xl text-zinc-100 max-w-3xl mx-auto mb-12">
+                Real People • Real Connections • Real Love
+            </p>
+            
+            <a href="https://www.profitablecpmratenetwork.com/d7ctaq4g?key=163059a9717a51ba0b50a9a9fd33df31" 
+               target="_blank" 
+               class="inline-block px-16 py-7 text-3xl font-bold bg-gradient-to-r from-pink-500 to-rose-600 rounded-3xl hover:scale-110 transition-all shadow-2xl">
+                Join Now - It's Free
+            </a>
+            
+            <div class="mt-16 flex justify-center gap-8 text-sm md:text-base">
+                <div class="flex items-center gap-2">
+                    <i class="fas fa-check text-emerald-400"></i>
+                    <span>Verified Profiles</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <i class="fas fa-check text-emerald-400"></i>
+                    <span>Privacy Protected</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <i class="fas fa-check text-emerald-400"></i>
+                    <span>Thousands Online</span>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- ===================== 1. PHOTO ALBUM FIRST ===================== -->
+    <!-- ===================== PHOTO ALBUM FIRST ===================== -->
     <section id="gallery" class="py-24 bg-black">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16">
@@ -77,42 +86,15 @@
         </div>
     </section>
 
-    <!-- ===================== 2. BIG JOIN NOW SECTION ===================== -->
+    <!-- Big Join Now Section -->
     <section class="py-28 bg-gradient-to-br from-pink-600 via-rose-600 to-purple-700 text-center">
         <div class="max-w-4xl mx-auto px-6">
-            <h2 class="text-5xl md:text-6xl font-bold heading mb-6 text-white">
-                Ready to Meet Someone Special?
-            </h2>
+            <h2 class="text-5xl md:text-6xl font-bold heading mb-6">Ready to Start Your Love Story?</h2>
             <a href="https://www.profitablecpmratenetwork.com/d7ctaq4g?key=163059a9717a51ba0b50a9a9fd33df31" 
                target="_blank" 
-               class="inline-block px-20 py-8 text-4xl font-bold bg-white text-black rounded-3xl hover:scale-110 transition-all shadow-2xl">
+               class="inline-block px-20 py-8 text-4xl font-bold bg-white text-black rounded-3xl hover:scale-110 transition-all">
                 Join Now - It's Completely Free
             </a>
-        </div>
-    </section>
-
-    <!-- ===================== Other Sections ===================== -->
-    <section class="py-24 bg-zinc-900">
-        <div class="max-w-7xl mx-auto px-6">
-            <h2 class="text-5xl font-bold heading text-center mb-16">Why People Love Love Life</h2>
-            
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-zinc-800 rounded-3xl p-10 text-center hover:scale-105 transition-all">
-                    <div class="text-6xl mb-6">🔥</div>
-                    <h3 class="text-3xl font-bold mb-3">Smart Matching</h3>
-                    <p class="text-zinc-400">Our system finds the best matches for you.</p>
-                </div>
-                <div class="bg-zinc-800 rounded-3xl p-10 text-center hover:scale-105 transition-all">
-                    <div class="text-6xl mb-6">💬</div>
-                    <h3 class="text-3xl font-bold mb-3">Live Chat & Video</h3>
-                    <p class="text-zinc-400">Talk safely before meeting.</p>
-                </div>
-                <div class="bg-zinc-800 rounded-3xl p-10 text-center hover:scale-105 transition-all">
-                    <div class="text-6xl mb-6">🛡️</div>
-                    <h3 class="text-3xl font-bold mb-3">Safe & Verified</h3>
-                    <p class="text-zinc-400">All profiles are manually checked.</p>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -126,14 +108,8 @@
 
     <script>
         const photos = [
-            "images/photo1.jpg",
-            "images/photo2.jpg",
-            "images/photo3.jpg",
-            "images/photo4.jpg",
-            "images/photo5.jpg",
-            "images/photo6.jpg",
-            "images/photo7.jpg",
-            "images/photo8.jpg"
+            "images/photo1.jpg", "images/photo2.jpg", "images/photo3.jpg", "images/photo4.jpg",
+            "images/photo5.jpg", "images/photo6.jpg", "images/photo7.jpg", "images/photo8.jpg"
         ];
 
         let currentIndex = 0;
@@ -141,7 +117,6 @@
         function renderGallery() {
             const grid = document.getElementById('photo-grid');
             grid.innerHTML = '';
-            
             photos.forEach((src, index) => {
                 const div = document.createElement('div');
                 div.className = "overflow-hidden rounded-3xl cursor-pointer shadow-2xl";
@@ -156,27 +131,15 @@
             document.getElementById('lightbox-image').src = photos[i];
         }
 
-        function closeLightbox() {
-            document.getElementById('lightbox').style.display = "none";
-        }
-
+        function closeLightbox() { document.getElementById('lightbox').style.display = "none"; }
         function nextImage() {
             currentIndex = (currentIndex + 1) % photos.length;
             document.getElementById('lightbox-image').src = photos[currentIndex];
         }
-
         function prevImage() {
             currentIndex = (currentIndex - 1 + photos.length) % photos.length;
             document.getElementById('lightbox-image').src = photos[currentIndex];
         }
-
-        document.addEventListener('keydown', (e) => {
-            if (document.getElementById('lightbox').style.display === "flex") {
-                if (e.key === "ArrowRight") nextImage();
-                if (e.key === "ArrowLeft") prevImage();
-                if (e.key === "Escape") closeLightbox();
-            }
-        });
 
         window.onload = renderGallery;
     </script>
