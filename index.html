@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Love Life • Find Your Perfect Match</title>
+    <title>Viral Love • Best Romantic Videos</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <style>
@@ -17,9 +17,12 @@
                         url('images/hero-bg.jpg') center/cover no-repeat fixed;
         }
 
-        .gallery-img:hover { 
-            transform: scale(1.08); 
-            transition: all 0.4s ease; 
+        .video-card {
+            transition: all 0.4s ease;
+        }
+        .video-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(236, 72, 153, 0.3);
         }
     </style>
 </head>
@@ -28,7 +31,7 @@
     <!-- Top Banner -->
     <a href="https://www.profitablecpmratenetwork.com/d7ctaq4g?key=163059a9717a51ba0b50a9a9fd33df31" 
        target="_blank" class="block bg-gradient-to-r from-pink-600 to-purple-600 py-3 text-center font-bold text-lg">
-        🔥 Meet Real Singles Now - Click Here →
+        🔥 Trending Viral Videos - Watch Now →
     </a>
 
     <!-- Navbar -->
@@ -36,7 +39,7 @@
         <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
             <div class="flex items-center gap-3">
                 <span class="text-4xl">❤️</span>
-                <h1 class="text-4xl font-bold heading">Love Life</h1>
+                <h1 class="text-4xl font-bold heading">Viral Love</h1>
             </div>
             <a href="https://www.profitablecpmratenetwork.com/d7ctaq4g?key=163059a9717a51ba0b50a9a9fd33df31" 
                target="_blank" class="bg-white text-black px-8 py-3 rounded-full font-bold hover:bg-pink-500 hover:text-white">
@@ -49,89 +52,134 @@
     <section class="hero-bg flex items-center pt-20">
         <div class="max-w-6xl mx-auto px-6 text-center">
             <h1 class="text-6xl md:text-7xl lg:text-8xl font-bold heading leading-tight mb-6">
-                Find Love That Lasts
+                Viral Love Videos
             </h1>
-            <p class="text-2xl md:text-3xl text-zinc-100">Real People • Real Connections</p>
+            <p class="text-2xl md:text-3xl text-zinc-100">Heartwarming • Romantic • Trending</p>
         </div>
     </section>
 
-    <!-- ===================== PHOTO ALBUM - FIRST MAJOR SECTION ===================== -->
-    <section id="gallery" class="py-20 bg-black">
+    <!-- ===================== VIDEO ALBUM ===================== -->
+    <section id="video-album" class="py-20 bg-black">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-12">
-                <h2 class="text-5xl font-bold heading text-pink-400">Photo Album</h2>
-                <p class="text-zinc-400 text-xl mt-3">Browse Real Members • Click to View Full Size</p>
+                <h2 class="text-5xl font-bold heading">Viral Video Album</h2>
+                <p class="text-zinc-400 text-xl mt-3">Click any video to watch</p>
             </div>
             
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" id="photo-grid"></div>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" id="video-grid"></div>
 
-            <!-- Join Now Button under Photo Album -->
             <div class="text-center mt-16">
                 <a href="https://www.profitablecpmratenetwork.com/d7ctaq4g?key=163059a9717a51ba0b50a9a9fd33df31" 
                    target="_blank" 
-                   class="inline-block px-20 py-8 text-3xl font-bold bg-gradient-to-r from-pink-500 to-rose-600 rounded-3xl hover:scale-110 transition-all shadow-xl">
-                    Join Now & See More Photos
+                   class="inline-block px-20 py-8 text-3xl font-bold bg-gradient-to-r from-pink-500 to-rose-600 rounded-3xl hover:scale-110 transition-all">
+                    Join Now For More Viral Videos
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Lightbox Viewer -->
-    <div id="lightbox" onclick="if(event.target === this) closeLightbox()">
-        <img id="lightbox-image" class="max-h-[92vh] max-w-[92vw] rounded-2xl shadow-2xl" alt="">
-        <button onclick="prevImage()" class="absolute left-8 text-6xl bg-black/70 hover:bg-black w-16 h-16 rounded-full flex items-center justify-center">←</button>
-        <button onclick="nextImage()" class="absolute right-8 text-6xl bg-black/70 hover:bg-black w-16 h-16 rounded-full flex items-center justify-center">→</button>
-        <button onclick="closeLightbox()" class="absolute top-8 right-8 text-5xl bg-black/70 hover:bg-black w-16 h-16 rounded-full flex items-center justify-center">✕</button>
+    <!-- Video Lightbox -->
+    <div id="video-lightbox" class="hidden fixed inset-0 bg-black/95 z-[9999] flex items-center justify-center">
+        <div class="relative w-full max-w-4xl px-4">
+            <button onclick="closeVideo()" 
+                    class="absolute -top-12 right-4 text-4xl text-white hover:text-pink-400">✕</button>
+            <video id="main-video" class="w-full rounded-2xl" controls autoplay></video>
+        </div>
     </div>
 
     <script>
-        // === YOUR PHOTOS (Add more if you want) ===
-        const photos = [
-            "images/photo1.jpg",
-            "images/photo2.jpg",
-            "images/photo3.jpg",
-            "images/photo4.jpg",
-            "images/photo5.jpg",
-            "images/photo6.jpg",
-            "images/photo7.jpg",
-            "images/photo8.jpg"
+        // === REPLACE THESE WITH YOUR OWN VIDEO FILES ===
+        const videos = [
+            {
+                title: "Cute Couple Surprise",
+                thumbnail: "images/thumb1.jpg",
+                videoUrl: "videos/video1.mp4"
+            },
+            {
+                title: "Romantic Proposal",
+                thumbnail: "images/thumb2.jpg",
+                videoUrl: "videos/video2.mp4"
+            },
+            {
+                title: "Heart Touching Love Story",
+                thumbnail: "images/thumb3.jpg",
+                videoUrl: "videos/video3.mp4"
+            },
+            {
+                title: "Viral Love Challenge",
+                thumbnail: "images/thumb4.jpg",
+                videoUrl: "videos/video4.mp4"
+            },
+            {
+                title: "Sweet Moment",
+                thumbnail: "images/thumb5.jpg",
+                videoUrl: "videos/video5.mp4"
+            },
+            {
+                title: "Long Distance Love",
+                thumbnail: "images/thumb6.jpg",
+                videoUrl: "videos/video6.mp4"
+            },
+            {
+                title: "Wedding Dance Viral",
+                thumbnail: "images/thumb7.jpg",
+                videoUrl: "videos/video7.mp4"
+            },
+            {
+                title: "True Love Forever",
+                thumbnail: "images/thumb8.jpg",
+                videoUrl: "videos/video8.mp4"
+            }
         ];
 
-        let currentIndex = 0;
-
-        function renderGallery() {
-            const grid = document.getElementById('photo-grid');
+        function renderVideoGallery() {
+            const grid = document.getElementById('video-grid');
             grid.innerHTML = '';
-            
-            photos.forEach((src, index) => {
+
+            videos.forEach((video, index) => {
                 const div = document.createElement('div');
-                div.className = "overflow-hidden rounded-3xl cursor-pointer shadow-2xl";
-                div.innerHTML = `<img src="${src}" class="gallery-img w-full aspect-[4/5] object-cover" onclick="openLightbox(${index})">`;
+                div.className = "video-card cursor-pointer overflow-hidden rounded-3xl bg-zinc-900";
+                div.innerHTML = `
+                    <div class="relative">
+                        <img src="${video.thumbnail}" class="w-full aspect-video object-cover">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <i class="fas fa-play-circle text-6xl text-white drop-shadow-lg"></i>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <p class="font-medium line-clamp-2">${video.title}</p>
+                    </div>
+                `;
+                div.onclick = () => playVideo(index);
                 grid.appendChild(div);
             });
         }
 
-        function openLightbox(i) {
-            currentIndex = i;
-            document.getElementById('lightbox').style.display = "flex";
-            document.getElementById('lightbox-image').src = photos[i];
+        function playVideo(index) {
+            const video = videos[index];
+            const lightbox = document.getElementById('video-lightbox');
+            const mainVideo = document.getElementById('main-video');
+            
+            mainVideo.src = video.videoUrl;
+            lightbox.classList.remove('hidden');
+            lightbox.classList.add('flex');
         }
 
-        function closeLightbox() {
-            document.getElementById('lightbox').style.display = "none";
+        function closeVideo() {
+            const lightbox = document.getElementById('video-lightbox');
+            const mainVideo = document.getElementById('main-video');
+            mainVideo.pause();
+            mainVideo.src = '';
+            lightbox.classList.add('hidden');
+            lightbox.classList.remove('flex');
         }
 
-        function nextImage() {
-            currentIndex = (currentIndex + 1) % photos.length;
-            document.getElementById('lightbox-image').src = photos[currentIndex];
-        }
+        // Close lightbox when clicking outside video
+        document.getElementById('video-lightbox').addEventListener('click', function(e) {
+            if (e.target === this) closeVideo();
+        });
 
-        function prevImage() {
-            currentIndex = (currentIndex - 1 + photos.length) % photos.length;
-            document.getElementById('lightbox-image').src = photos[currentIndex];
-        }
-
-        window.onload = renderGallery;
+        window.onload = renderVideoGallery;
     </script>
 </body>
 </html>
