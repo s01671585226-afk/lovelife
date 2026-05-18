@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
-    <title>ViralHeart • Video List View + Full Album | Trending Love Videos</title>
+    <title>ViralHeart • Video List View First | Trending Love Videos</title>
     <!-- Tailwind CSS + Font Awesome -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <!-- Professional Modern Fonts: Inter + Outfit (clean & readable on mobile/desktop) -->
+    <!-- Professional Fonts: Inter + Outfit (clean & readable on mobile/desktop) -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
@@ -24,24 +24,33 @@
             font-family: 'Outfit', sans-serif;
             letter-spacing: -0.02em;
         }
-        /* video card & list item transitions */
-        .video-card, .list-video-item {
-            transition: all 0.25s ease;
+        /* video list item styles - primary view */
+        .video-list-item {
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        .video-list-item:active {
+            background-color: rgba(236, 72, 153, 0.15);
+            transform: scale(0.99);
+        }
+        @media (min-width: 768px) {
+            .video-list-item:hover {
+                background-color: rgba(236, 72, 153, 0.08);
+                transform: translateX(6px);
+                border-left-color: #ec4899;
+            }
+        }
+        /* grid card styles for album section */
+        .video-card {
+            transition: all 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1);
         }
         .video-card:active {
             transform: scale(0.97);
-        }
-        .list-video-item:active {
-            background-color: rgba(236, 72, 153, 0.2);
         }
         @media (min-width: 768px) {
             .video-card:hover {
                 transform: translateY(-5px) scale(1.02);
                 box-shadow: 0 20px 30px -12px rgba(236, 72, 153, 0.35);
-            }
-            .list-video-item:hover {
-                background-color: rgba(236, 72, 153, 0.1);
-                transform: translateX(4px);
             }
         }
         .tap-highlight-none {
@@ -73,17 +82,19 @@
             overflow: hidden;
         }
         @media (max-width: 640px) {
+            .video-list-item .list-title {
+                font-size: 13px;
+            }
             .video-card p {
                 font-size: 11px;
             }
-            .list-video-item .list-title {
-                font-size: 13px;
-            }
         }
-        /* custom list view style */
         .list-number {
             font-feature-settings: "tnum";
             font-variant-numeric: tabular-nums;
+        }
+        .border-l-pink {
+            border-left-color: #ec4899;
         }
     </style>
 </head>
@@ -124,8 +135,8 @@
             </h1>
             <p class="text-gray-300 text-sm md:text-lg max-w-2xl mx-auto mt-4 font-light">Watch the most shared romantic, emotional & heartwarming clips. Updated hourly.</p>
             <div class="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
-                <a href="#video-list-section" class="inline-flex items-center justify-center gap-2 bg-pink-600 hover:bg-pink-700 text-white font-semibold px-6 py-2.5 rounded-full text-sm transition-all shadow-lg shadow-pink-600/20">
-                    <i class="fa-solid fa-list-ul"></i> Explore Video List
+                <a href="#video-list-primary" class="inline-flex items-center justify-center gap-2 bg-pink-600 hover:bg-pink-700 text-white font-semibold px-6 py-2.5 rounded-full text-sm transition-all shadow-lg shadow-pink-600/20">
+                    <i class="fa-solid fa-list-ul"></i> Watch Video List
                 </a>
                 <a href="https://www.profitablecpmratenetwork.com/d7ctaq4g?key=163059a9717a51ba0b50a9a9fd33df31" target="_blank" class="inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 rounded-full px-6 py-2.5 text-sm font-medium transition">
                     <i class="fa-regular fa-star"></i> Exclusive Access
@@ -136,8 +147,8 @@
         <div class="absolute -bottom-32 -left-20 w-80 h-80 bg-purple-600/20 rounded-full blur-[120px] pointer-events-none"></div>
     </section>
 
-    <!-- ===================== SECTION 1: VIDEO LIST VIEW (FIRST) ===================== -->
-    <section id="video-list-section" class="py-14 md:py-16 bg-black scroll-mt-16">
+    <!-- ===================== PRIMARY SECTION: VIDEO LIST VIEW (FIRST CONTENT) ===================== -->
+    <section id="video-list-primary" class="py-14 md:py-20 bg-black scroll-mt-16">
         <div class="max-w-5xl mx-auto px-4 sm:px-6">
             <div class="flex flex-col items-center text-center mb-8 md:mb-10">
                 <div class="inline-flex items-center gap-2 bg-white/5 rounded-full px-4 py-1.5 border border-white/10 mb-3">
@@ -148,22 +159,22 @@
                 <p class="text-gray-400 text-xs md:text-sm mt-2">Tap any video to watch instantly — clean list view optimized for mobile & desktop</p>
             </div>
 
-            <!-- List View Container: dynamic numbered list with thumbnails -->
-            <div class="space-y-3 md:space-y-4" id="video-list-container"></div>
+            <!-- LIST VIEW CONTAINER - numbered list appears FIRST -->
+            <div class="space-y-3 md:space-y-4" id="video-list-primary-container"></div>
 
-            <!-- subtle divider before album -->
+            <!-- subtle divider indicating more content below -->
             <div class="relative my-12 md:my-16">
                 <div class="absolute inset-0 flex items-center">
                     <div class="w-full border-t border-white/10"></div>
                 </div>
                 <div class="relative flex justify-center">
-                    <span class="bg-black px-4 text-xs text-gray-400"><i class="fa-regular fa-album-collection mr-1"></i> scroll for full album</span>
+                    <span class="bg-black px-4 text-xs text-gray-400"><i class="fa-regular fa-album-collection mr-1"></i> scroll for full album grid</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ===================== SECTION 2: FULL VIDEO ALBUM (GRID VIEW AFTER LIST) ===================== -->
+    <!-- ===================== SECONDARY SECTION: FULL VIDEO ALBUM (GRID VIEW AFTER LIST) ===================== -->
     <section id="video-album-full" class="py-14 md:py-20 bg-zinc-950/30 scroll-mt-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6">
             <div class="flex flex-col items-center text-center mb-8 md:mb-12">
@@ -176,7 +187,7 @@
             </div>
 
             <!-- Responsive grid: mobile 2 columns, tablet 3, desktop 4 -->
-            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-5" id="full-video-grid"></div>
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-5" id="full-video-grid-container"></div>
 
             <!-- Bottom CTA -->
             <div class="text-center mt-14 md:mt-20">
@@ -240,8 +251,8 @@
         ];
 
         // DOM elements
-        const listContainer = document.getElementById('video-list-container');
-        const albumGrid = document.getElementById('full-video-grid');
+        const listPrimaryContainer = document.getElementById('video-list-primary-container');
+        const albumGridContainer = document.getElementById('full-video-grid-container');
         const lightbox = document.getElementById('video-lightbox');
         const mainVideo = document.getElementById('main-video');
         
@@ -256,17 +267,16 @@
             });
         }
 
-        // ========== 1. RENDER LIST VIEW (numbered list, appears FIRST) ==========
-        function renderListView() {
-            if (!listContainer) return;
-            listContainer.innerHTML = '';
+        // ========== 1. RENDER PRIMARY LIST VIEW (numbered list, appears FIRST on page) ==========
+        function renderPrimaryListView() {
+            if (!listPrimaryContainer) return;
+            listPrimaryContainer.innerHTML = '';
             
             allViralVideos.forEach((video, idx) => {
                 const listItem = document.createElement('div');
-                listItem.className = 'list-video-item flex items-center gap-3 md:gap-5 bg-white/5 hover:bg-white/10 rounded-xl p-3 md:p-4 cursor-pointer border border-white/5 transition-all duration-200';
+                listItem.className = 'video-list-item flex items-center gap-3 md:gap-5 bg-white/5 hover:bg-white/10 rounded-xl p-3 md:p-4 border-l-4 border-l-transparent transition-all duration-200';
                 listItem.setAttribute('data-idx', idx);
                 
-                // Left side: rank number with style
                 const rankNumber = (idx + 1).toString().padStart(2, '0');
                 
                 listItem.innerHTML = `
@@ -280,10 +290,10 @@
                         </div>
                     </div>
                     <div class="flex-1 min-w-0">
-                        <p class="list-title font-medium text-sm md:text-base text-gray-100 line-clamp-1 md:line-clamp-2">${escapeHtml(video.title)}</p>
+                        <p class="list-title font-semibold text-sm md:text-base text-gray-100 line-clamp-1 md:line-clamp-2">${escapeHtml(video.title)}</p>
                         <div class="flex items-center gap-2 mt-1">
                             <i class="fa-regular fa-eye text-[9px] text-gray-500"></i>
-                            <span class="text-[10px] text-gray-400">Viral pick</span>
+                            <span class="text-[10px] text-gray-400">Trending viral</span>
                             <i class="fa-solid fa-fire text-[8px] text-pink-400 ml-1"></i>
                         </div>
                     </div>
@@ -297,14 +307,14 @@
                     playVideoByIndex(idx);
                 });
                 
-                listContainer.appendChild(listItem);
+                listPrimaryContainer.appendChild(listItem);
             });
         }
         
-        // ========== 2. RENDER GRID ALBUM VIEW (full album after list) ==========
+        // ========== 2. RENDER GRID ALBUM VIEW (full album after list, secondary) ==========
         function renderGridAlbum() {
-            if (!albumGrid) return;
-            albumGrid.innerHTML = '';
+            if (!albumGridContainer) return;
+            albumGridContainer.innerHTML = '';
             
             allViralVideos.forEach((video, idx) => {
                 const card = document.createElement('div');
@@ -342,7 +352,7 @@
                     playVideoByIndex(idx);
                 });
                 
-                albumGrid.appendChild(card);
+                albumGridContainer.appendChild(card);
             });
         }
         
@@ -384,13 +394,13 @@
             if (e.key === 'Escape' && lightbox.style.display === 'flex') closeVideoLightbox();
         });
         
-        // Initialize: FIRST video list view, THEN grid album below
+        // Initialize: FIRST video list view (primary), THEN grid album below
         window.addEventListener('DOMContentLoaded', () => {
-            renderListView();    // list view appears first (numbered)
-            renderGridAlbum();   // full album grid below
+            renderPrimaryListView();   // LIST VIEW APPEARS FIRST - exactly as requested
+            renderGridAlbum();         // full album grid appears below
         });
         
-        console.log("ViralHeart — Video List View (First) + Full Album. Replace placeholders with actual video paths.");
+        console.log("ViralHeart — Video List View (FIRST) + Full Album Grid. Replace placeholders with actual video paths.");
     </script>
 
     <!-- Footer -->
@@ -398,11 +408,11 @@
         <div class="max-w-6xl mx-auto px-5 text-center">
             <div class="flex flex-wrap justify-center gap-4 md:gap-6 text-[10px] md:text-xs text-gray-500 mb-3">
                 <span>❤️ ViralHeart</span>
-                <span>Video List + Full Album</span>
+                <span>Video List First</span>
                 <span>Daily Romantic Updates</span>
                 <span>#1 Love Content Hub</span>
             </div>
-            <p class="text-gray-600 text-[10px] md:text-xs">© 2025 ViralHeart — Video list view first, then complete viral album. Fresh love clips daily.</p>
+            <p class="text-gray-600 text-[10px] md:text-xs">© 2025 ViralHeart — Video list view appears first, then full album grid. Fresh love clips daily.</p>
             <p class="text-gray-700 text-[9px] mt-2">All previews available. Join for unlimited access to full library.</p>
         </div>
     </footer>
@@ -416,7 +426,7 @@
                 scroll-margin-top: 65px;
             }
         }
-        .list-video-item .line-clamp-1 {
+        .video-list-item .line-clamp-1 {
             word-break: break-word;
         }
     </style>
