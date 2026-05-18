@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
-    <title>ViralHeart | Romantic Videos Daily</title>
+    <title>ViralHeart | Trending Viral Videos List</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <!-- Professional Fonts: Inter + Outfit -->
+    <!-- Professional Fonts: Inter + Outfit (clean, modern, readable) -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
@@ -29,9 +29,9 @@
             letter-spacing: -0.02em;
         }
 
-        /* custom smooth transitions */
+        /* Video card animations & touch optimization */
         .video-card {
-            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            transition: all 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1);
             will-change: transform;
         }
         .video-card:active {
@@ -39,22 +39,19 @@
         }
         @media (min-width: 768px) {
             .video-card:hover {
-                transform: translateY(-6px) scale(1.02);
-                box-shadow: 0 20px 35px -12px rgba(236, 72, 153, 0.4);
-            }
-            .video-card:active {
-                transform: scale(0.98);
+                transform: translateY(-5px) scale(1.02);
+                box-shadow: 0 20px 30px -12px rgba(236, 72, 153, 0.35);
             }
         }
 
-        /* mobile optimized tap highlight */
+        /* tap highlight removal for mobile */
         .tap-highlight-none {
             -webkit-tap-highlight-color: transparent;
         }
 
         /* custom scrollbar */
         ::-webkit-scrollbar {
-            width: 5px;
+            width: 4px;
         }
         ::-webkit-scrollbar-track {
             background: #1f1f1f;
@@ -64,23 +61,37 @@
             border-radius: 10px;
         }
 
-        /* prevent body scroll when lightbox open */
+        /* lightbox open state */
         body.lightbox-open {
+            overflow: hidden;
+        }
+
+        /* line clamp utility */
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .line-clamp-1 {
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
             overflow: hidden;
         }
     </style>
 </head>
 <body class="bg-black text-white tap-highlight-none">
 
-    <!-- Sticky Top CTA Banner - Clean & Clickable -->
+    <!-- Top Banner CTA - clickable, prominent but not intrusive -->
     <a href="https://www.profitablecpmratenetwork.com/d7ctaq4g?key=163059a9717a51ba0b50a9a9fd33df31" 
        target="_blank" 
        rel="noopener noreferrer"
-       class="block w-full bg-gradient-to-r from-rose-600 to-pink-600 py-3.5 text-center font-semibold text-sm md:text-base tracking-wide shadow-lg z-40 relative">
-        🔥 TRENDING NOW: Viral Love Videos — Watch Full Collection <i class="fa-solid fa-arrow-right ml-1 text-xs"></i>
+       class="block w-full bg-gradient-to-r from-rose-600 to-pink-600 py-3 text-center font-semibold text-xs sm:text-sm tracking-wide shadow-lg z-40 relative">
+        🔥 VIRAL TRENDING: Watch Full Love Videos Collection & Get Daily Updates <i class="fa-solid fa-arrow-right ml-1 text-[10px]"></i>
     </a>
 
-    <!-- Navbar - minimalist, sticky, mobile optimized -->
+    <!-- Navbar - minimalist, sticky for both devices -->
     <nav class="sticky top-0 z-50 bg-black/80 backdrop-blur-xl border-b border-white/10 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 md:py-4 flex justify-between items-center">
             <div class="flex items-center gap-2">
@@ -95,157 +106,158 @@
         </div>
     </nav>
 
-    <!-- Hero Section - compact on mobile, elegant spacing -->
-    <section class="relative overflow-hidden bg-gradient-to-br from-zinc-900 via-black to-rose-950/30 py-12 md:py-20">
+    <!-- Hero Section - compact but engaging, viral-focused -->
+    <section class="relative overflow-hidden bg-gradient-to-br from-zinc-900 via-black to-rose-950/30 py-10 md:py-16">
         <div class="max-w-6xl mx-auto px-5 text-center">
             <div class="inline-block mb-3 px-3 py-1 rounded-full bg-pink-500/20 border border-pink-500/40 backdrop-blur-sm">
-                <span class="text-[11px] md:text-xs font-medium text-pink-300 uppercase tracking-wider">#1 Viral Love Platform</span>
+                <span class="text-[10px] md:text-xs font-medium text-pink-300 uppercase tracking-wider">🔥 Daily Viral Videos</span>
             </div>
-            <h1 class="font-display font-extrabold text-3xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight tracking-tight">
-                <span class="bg-gradient-to-r from-pink-400 via-rose-300 to-pink-500 bg-clip-text text-transparent">Romantic Videos</span>
-                <br>That Go Viral
+            <h1 class="font-display font-extrabold text-3xl sm:text-5xl md:text-6xl leading-tight tracking-tight">
+                <span class="bg-gradient-to-r from-pink-400 via-rose-300 to-pink-500 bg-clip-text text-transparent">Viral Video List</span>
+                <br>Trending Now
             </h1>
-            <p class="text-gray-300 text-sm md:text-lg max-w-2xl mx-auto mt-4 font-light">Heartwarming moments, emotional stories & trending love clips — updated daily.</p>
-            <div class="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
-                <a href="#video-album" class="inline-flex items-center justify-center gap-2 bg-pink-600 hover:bg-pink-700 text-white font-semibold px-6 py-2.5 rounded-full text-sm transition-all shadow-lg shadow-pink-600/20">
-                    <i class="fa-solid fa-play"></i> Watch Videos
+            <p class="text-gray-300 text-sm md:text-lg max-w-2xl mx-auto mt-3 font-light">Watch the most shared romantic, emotional & heartwarming clips. Updated hourly.</p>
+            <div class="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
+                <a href="#viral-list-section" class="inline-flex items-center justify-center gap-2 bg-pink-600 hover:bg-pink-700 text-white font-semibold px-5 py-2.5 rounded-full text-sm transition-all shadow-lg shadow-pink-600/20">
+                    <i class="fa-solid fa-list-ul"></i> Explore Viral List
                 </a>
-                <a href="https://www.profitablecpmratenetwork.com/d7ctaq4g?key=163059a9717a51ba0b50a9a9fd33df31" target="_blank" class="inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 rounded-full px-6 py-2.5 text-sm font-medium transition">
+                <a href="https://www.profitablecpmratenetwork.com/d7ctaq4g?key=163059a9717a51ba0b50a9a9fd33df31" target="_blank" class="inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 rounded-full px-5 py-2.5 text-sm font-medium transition">
                     <i class="fa-regular fa-star"></i> Exclusive Access
                 </a>
             </div>
         </div>
-        <!-- subtle background blur effect -->
+        <!-- background blur effects -->
         <div class="absolute -top-24 -right-24 w-72 h-72 bg-pink-600/20 rounded-full blur-[100px] pointer-events-none"></div>
         <div class="absolute -bottom-32 -left-20 w-80 h-80 bg-purple-600/20 rounded-full blur-[120px] pointer-events-none"></div>
     </section>
 
-    <!-- Video Album Section - Responsive Grid: 2 cols mobile, 3-4 desktop -->
-    <section id="video-album" class="py-14 md:py-20 bg-black">
+    <!-- ================= VIRAL VIDEO LIST SECTION (FIRST CONTENT SECTION) ================= -->
+    <section id="viral-list-section" class="py-12 md:py-16 bg-black">
         <div class="max-w-7xl mx-auto px-4 sm:px-6">
-            <div class="flex flex-col items-center text-center mb-10">
+            <!-- Section header with viral badge -->
+            <div class="flex flex-col items-center text-center mb-8 md:mb-10">
                 <div class="inline-flex items-center gap-2 bg-white/5 rounded-full px-4 py-1.5 border border-white/10 mb-3">
-                    <i class="fa-solid fa-film text-pink-400 text-xs"></i>
-                    <span class="text-[11px] md:text-xs font-medium text-gray-300">trending collection</span>
+                    <i class="fa-solid fa-fire-flame text-pink-500 text-xs"></i>
+                    <span class="text-[11px] md:text-xs font-medium text-gray-300">viral排行榜 • trending</span>
                 </div>
-                <h2 class="font-display font-bold text-2xl sm:text-3xl md:text-4xl tracking-tight">Viral Video Album <i class="fa-regular fa-heart text-pink-500 ml-1"></i></h2>
-                <p class="text-gray-400 text-xs md:text-sm mt-2">Tap any video to watch instantly — mobile optimized player</p>
+                <h2 class="font-display font-bold text-2xl sm:text-3xl md:text-4xl tracking-tight">📋 Viral Video List <i class="fa-regular fa-heart text-pink-500 ml-1"></i></h2>
+                <p class="text-gray-400 text-xs md:text-sm mt-2">Tap any video to watch — Mobile optimized player & fullscreen</p>
             </div>
 
-            <!-- Dynamic grid: mobile 2 columns, tablet 3, desktop 4 -->
-            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-5" id="video-grid"></div>
+            <!-- Dynamic Grid: Mobile: 2 columns, Tablet: 3, Desktop: 4 columns (viral list first) -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-5" id="viral-video-grid"></div>
 
-            <!-- bottom CTA with larger click area but professional style -->
+            <!-- Additional CTA after list to drive engagement -->
             <div class="text-center mt-12 md:mt-16">
                 <a href="https://www.profitablecpmratenetwork.com/d7ctaq4g?key=163059a9717a51ba0b50a9a9fd33df31" 
                    target="_blank" 
                    class="inline-flex items-center justify-center gap-2 w-full sm:w-auto bg-gradient-to-r from-pink-500 to-rose-600 hover:from-pink-600 hover:to-rose-700 text-white font-bold py-3.5 px-8 rounded-2xl text-sm md:text-base shadow-2xl transition-all duration-300 hover:scale-[1.02] active:scale-100">
-                    <i class="fa-solid fa-bolt"></i> Unlock Full Library + Daily Updates
+                    <i class="fa-solid fa-bolt"></i> Unlock Full Viral Library + Daily New Videos
                     <i class="fa-solid fa-arrow-right ml-1 text-xs"></i>
                 </a>
-                <p class="text-gray-500 text-[11px] mt-3">🔥 1000+ viral videos added weekly</p>
+                <p class="text-gray-500 text-[11px] mt-3">🔥 1000+ exclusive viral videos added weekly • join now</p>
             </div>
         </div>
     </section>
 
-    <!-- Lightbox / Video Modal - mobile first touch friendly -->
+    <!-- ================= BONUS: TRENDING PLAYLIST SECTION (optional but adds value) ================= -->
+    <section class="py-10 md:py-14 bg-zinc-950/50 border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 text-center">
+            <div class="flex flex-wrap justify-center gap-6 text-sm md:text-base text-gray-300">
+                <div class="flex items-center gap-2"><i class="fa-regular fa-clock text-pink-400"></i> Daily Top 10</div>
+                <div class="flex items-center gap-2"><i class="fa-solid fa-share-nodes text-pink-400"></i> Most Shared</div>
+                <div class="flex items-center gap-2"><i class="fa-regular fa-heart text-pink-400"></i> Romantic Trends</div>
+                <div class="flex items-center gap-2"><i class="fa-solid fa-chart-line text-pink-400"></i> Viral Rank</div>
+            </div>
+            <p class="text-gray-500 text-xs mt-5">*Videos are updated in real-time from trending love categories</p>
+        </div>
+    </section>
+
+    <!-- Video Lightbox Modal - clean, touch friendly -->
     <div id="video-lightbox" class="fixed inset-0 bg-black/95 backdrop-blur-md z-[9999] hidden items-center justify-center transition-all duration-300" style="display: none;">
         <div class="relative w-full max-w-4xl px-3 md:px-6">
-            <!-- close button big enough for thumb -->
             <button id="close-lightbox-btn" class="absolute -top-11 md:-top-14 right-2 md:right-0 text-white/80 hover:text-pink-400 text-3xl md:text-4xl p-2 z-[10000]">
                 <i class="fa-regular fa-circle-xmark"></i>
             </button>
             <div class="bg-black/40 rounded-2xl overflow-hidden shadow-2xl border border-white/10">
                 <video id="main-video" class="w-full h-auto max-h-[70vh] object-contain" controls playsinline preload="metadata"></video>
             </div>
-            <p class="text-center text-gray-300 text-xs mt-4 opacity-70">Tap video to play — full controls available</p>
+            <p class="text-center text-gray-300 text-xs mt-4 opacity-70">✨ Tap play — full controls | double-tap to like</p>
         </div>
     </div>
 
     <script>
         // --------------------------------------------------------------
-        // VIDEO DATASET — Replace with actual video paths and thumbnails
-        // All files should be inside 'videos/' and 'images/' folders
-        // To keep demo functional but professional, I'm using realistic placeholder paths.
-        // You must replace 'videoUrl' and 'thumbnail' with your actual assets.
+        // VIRAL VIDEO LIST (FIRST PRIORITY)
+        // Replace these with your actual video files (videos/*.mp4) and thumbnails
+        // For demo, we use descriptive placeholders with relevant viral titles
         // --------------------------------------------------------------
-        const videos = [
-            {
-                title: "College Love Story - Emotional Reunion",
-                thumbnail: "https://placehold.co/400x225/1e1e2f/pink?text=Love+Story+1",
-                videoUrl: "videos/video1.mp4"
-            },
-            {
-                title: "Sunset Proposal Goes Viral",
-                thumbnail: "https://placehold.co/400x225/1e1e2f/ff6b9d?text=Romantic+Moments",
-                videoUrl: "videos/video2.mp4"
-            },
-            {
-                title: "Heart Touching Surprise",
-                thumbnail: "https://placehold.co/400x225/2a1a2e/ff9a8b?text=Heart+Touch",
-                videoUrl: "videos/video3.mp4"
-            },
-            {
-                title: "Long Distance Couple",
-                thumbnail: "https://placehold.co/400x225/1a1a2e/c084fc?text=Long+Distance",
-                videoUrl: "videos/video4.mp4"
-            },
-            {
-                title: "First Kiss Compilation",
-                thumbnail: "https://placehold.co/400x225/261c2f/f472b6?text=First+Kiss",
-                videoUrl: "videos/video5.mp4"
-            },
-            {
-                title: "Romantic Getaway",
-                thumbnail: "https://placehold.co/400x225/1e1a2f/ef4444?text=Getaway",
-                videoUrl: "videos/video6.mp4"
-            },
-            {
-                title: "Viral Love Challenge",
-                thumbnail: "https://placehold.co/400x225/2c1c2c/ec4899?text=Love+Challenge",
-                videoUrl: "videos/video7.mp4"
-            },
-            {
-                title: "Wedding Dance Surprise",
-                thumbnail: "https://placehold.co/400x225/252525/f43f5e?text=Wedding+Dance",
-                videoUrl: "videos/video8.mp4"
-            }
+        const viralVideos = [
+            { title: "🔥 College Romance Goes Viral - 15M Views", thumbnail: "https://placehold.co/400x225/1e1e2f/ff4d6d?text=College+Viral", videoUrl: "videos/video1.mp4" },
+            { title: "❤️ Emotional Love Confession (TikTok Hit)", thumbnail: "https://placehold.co/400x225/2a1a2e/ff8c9e?text=Confession", videoUrl: "videos/video2.mp4" },
+            { title: "💋 Unexpected Kiss Compilation - 8M Shares", thumbnail: "https://placehold.co/400x225/1a1a2e/c084fc?text=Kiss+Comp", videoUrl: "videos/video3.mp4" },
+            { title: "🌅 Sunset Proposal That Broke Internet", thumbnail: "https://placehold.co/400x225/261c2f/f472b6?text=Sunset+Proposal", videoUrl: "videos/video4.mp4" },
+            { title: "🎁 Surprise Gift Reaction (Most Heartwarming)", thumbnail: "https://placehold.co/400x225/1e1a2f/ef4444?text=Surprise+Reaction", videoUrl: "videos/video5.mp4" },
+            { title: "✈️ Long Distance Love Reunion", thumbnail: "https://placehold.co/400x225/2c1c2c/ec4899?text=LD+Reunion", videoUrl: "videos/video6.mp4" },
+            { title: "💒 Wedding Dance That Went Viral", thumbnail: "https://placehold.co/400x225/252525/f43f5e?text=Wedding+Dance", videoUrl: "videos/video7.mp4" },
+            { title: "📱 Best Friends to Lovers Story", thumbnail: "https://placehold.co/400x225/1f1a2e/a855f7?text=Friends+to+Lovers", videoUrl: "videos/video8.mp4" },
+            { title: "🎬 Romantic Movie Real Life Moment", thumbnail: "https://placehold.co/400x225/2d1b2e/d946ef?text=Movie+Moment", videoUrl: "videos/video9.mp4" },
+            { title: "🔥 Most Shared Couple Challenge", thumbnail: "https://placehold.co/400x225/1e293b/fb7185?text=Couple+Challenge", videoUrl: "videos/video10.mp4" },
+            { title: "💖 First Date That Melted Hearts", thumbnail: "https://placehold.co/400x225/2a1a2e/fc7b9b?text=First+Date", videoUrl: "videos/video11.mp4" },
+            { title: "📸 Cute Proposal Flashmob Viral", thumbnail: "https://placehold.co/400x225/241f31/e879f9?text=Flashmob", videoUrl: "videos/video12.mp4" }
         ];
 
         // DOM elements
-        const gridContainer = document.getElementById('video-grid');
+        const gridContainer = document.getElementById('viral-video-grid');
         const lightbox = document.getElementById('video-lightbox');
         const mainVideo = document.getElementById('main-video');
-        let currentVideoIndex = 0;
+        let currentPlayingIndex = 0;
 
-        // Helper: render video grid (mobile-friendly card design)
-        function renderVideoGallery() {
+        // Helper: escape HTML safely
+        function escapeHtml(str) {
+            if (!str) return '';
+            return str.replace(/[&<>]/g, function(m) {
+                if (m === '&') return '&amp;';
+                if (m === '<') return '&lt;';
+                if (m === '>') return '&gt;';
+                return m;
+            }).replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, function(c) { return c; });
+        }
+
+        // Render viral video list (displayed first on page)
+        function renderViralVideoList() {
             if (!gridContainer) return;
             gridContainer.innerHTML = '';
-            
-            videos.forEach((video, idx) => {
+
+            viralVideos.forEach((video, idx) => {
                 const card = document.createElement('div');
                 card.className = 'video-card cursor-pointer rounded-xl md:rounded-2xl bg-zinc-900/80 border border-white/10 overflow-hidden transition-all duration-200 active:scale-[0.98]';
-                card.setAttribute('data-index', idx);
+                card.setAttribute('data-idx', idx);
                 
-                // inner layout: thumbnail + play overlay + title (small font mobile)
+                // Build thumbnail with fallback and play overlay
                 card.innerHTML = `
                     <div class="relative group">
                         <img src="${video.thumbnail}" alt="${escapeHtml(video.title)}" 
                              class="w-full aspect-video object-cover bg-zinc-800" 
                              loading="lazy"
-                             onerror="this.src='https://placehold.co/400x225/2d2d3a/ff69b4?text=Preview'">
+                             onerror="this.src='https://placehold.co/400x225/2d2d3a/ff69b4?text=Trending+Viral'">
                         <div class="absolute inset-0 bg-black/30 flex items-center justify-center opacity-100 md:group-hover:bg-black/40 transition-all">
                             <div class="w-9 h-9 md:w-11 md:h-11 rounded-full bg-pink-600/90 backdrop-blur-sm flex items-center justify-center shadow-lg">
                                 <i class="fa-solid fa-play text-white text-sm md:text-base ml-0.5"></i>
                             </div>
                         </div>
+                        <!-- viral badge overlay -->
+                        <div class="absolute top-2 left-2 bg-black/60 backdrop-blur-sm rounded-full px-2 py-0.5 flex items-center gap-1">
+                            <i class="fa-solid fa-fire text-pink-500 text-[9px]"></i>
+                            <span class="text-[9px] font-bold text-white">#${idx+1}</span>
+                        </div>
                     </div>
                     <div class="p-2.5 md:p-3">
                         <p class="text-gray-200 text-[12px] md:text-sm font-medium leading-tight line-clamp-2">${escapeHtml(video.title)}</p>
-                        <div class="flex items-center gap-1 mt-1.5">
-                            <i class="fa-regular fa-eye text-[9px] md:text-[10px] text-gray-500"></i>
-                            <span class="text-[10px] md:text-[11px] text-gray-500">Trending</span>
+                        <div class="flex items-center gap-2 mt-1.5">
+                            <i class="fa-regular fa-eye text-[9px] text-gray-500"></i>
+                            <span class="text-[10px] md:text-[11px] text-gray-500">Viral trend</span>
+                            <i class="fa-regular fa-heart text-[9px] text-pink-400 ml-1"></i>
                         </div>
                     </div>
                 `;
@@ -259,41 +271,28 @@
             });
         }
 
-        // Helper to escape HTML to avoid injection
-        function escapeHtml(str) {
-            if (!str) return '';
-            return str.replace(/[&<>]/g, function(m) {
-                if (m === '&') return '&amp;';
-                if (m === '<') return '&lt;';
-                if (m === '>') return '&gt;';
-                return m;
-            }).replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, function(c) {
-                return c;
-            });
-        }
-
-        // Play video by index with error handling (show fallback)
+        // Play video function with error handling (if video missing shows fallback info)
         function playVideoByIndex(index) {
-            if (!videos[index]) return;
-            const videoData = videos[index];
-            currentVideoIndex = index;
+            if (!viralVideos[index]) return;
+            const videoData = viralVideos[index];
+            currentPlayingIndex = index;
             
-            // set video source
+            // Set source and load
             mainVideo.src = videoData.videoUrl;
             mainVideo.load();
             
-            // Show lightbox and prevent body scroll
+            // Show lightbox and block scroll
             lightbox.style.display = 'flex';
             document.body.classList.add('lightbox-open');
             
-            // autoplay attempt (modern browsers require user interaction but okay within lightbox)
+            // Attempt autoplay (user gesture may be required but within lightbox it's fine)
             mainVideo.play().catch(err => {
-                console.log("autoplay blocked, user must tap play", err);
-                // show small hint but not intrusive
+                console.log("Autoplay blocked - user must tap play button", err);
+                // We show controls and user can manually start
             });
         }
         
-        // Close lightbox function
+        // Close lightbox fully
         function closeVideoLightbox() {
             if (mainVideo) {
                 mainVideo.pause();
@@ -303,77 +302,69 @@
             document.body.classList.remove('lightbox-open');
         }
         
-        // event listeners for closing
+        // Attach close event listeners
         const closeBtn = document.getElementById('close-lightbox-btn');
         if (closeBtn) {
             closeBtn.addEventListener('click', closeVideoLightbox);
         }
         
-        // click on backdrop to close
+        // backdrop click to close
         lightbox.addEventListener('click', (e) => {
             if (e.target === lightbox) {
                 closeVideoLightbox();
             }
         });
         
-        // optional: handle escape key
+        // Esc key support
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && lightbox.style.display === 'flex') {
                 closeVideoLightbox();
             }
         });
         
-        // mobile additional: swipe to close not needed for simplicity
-        // Initialize the gallery
+        // Initialize the viral video list first on DOM load
         window.addEventListener('DOMContentLoaded', () => {
-            renderVideoGallery();
+            renderViralVideoList();
         });
         
-        // Improve placeholder handling: if user's actual videos are missing, we show nice fallback 
-        // but also you can replace video paths manually.
-        // Note: For real production, replace 'videos/*.mp4' with actual paths and also thumbnails.
-        console.log("ViralHeart — Professional Landing Ready. Replace videoUrl and thumbnail paths with own content.");
+        // Additional note: To replace with actual videos, edit 'viralVideos' array with correct paths.
+        // Video files should be inside 'videos' folder and thumbnails inside 'images' or use actual URLs.
+        console.log("ViralHeart Pro — Viral video list displayed as primary section. Replace videoUrl and thumbnail with actual assets for production.");
     </script>
 
-    <!-- Extra small footer + legal discreet -->
-    <footer class="border-t border-white/10 py-8 mt-10 bg-black/40">
+    <!-- Footer - clean, professional, mobile-friendly -->
+    <footer class="border-t border-white/10 py-6 md:py-8 mt-6 bg-black/40">
         <div class="max-w-6xl mx-auto px-5 text-center">
-            <div class="flex flex-wrap justify-center gap-5 text-[11px] md:text-xs text-gray-500 mb-3">
+            <div class="flex flex-wrap justify-center gap-4 md:gap-6 text-[10px] md:text-xs text-gray-500 mb-3">
                 <span>❤️ ViralHeart</span>
-                <span>Trending Love Videos</span>
-                <span>Daily Updates</span>
+                <span>Trending Viral Love Videos</span>
+                <span>Daily Viral List</span>
+                <span>#1 Romance Hub</span>
             </div>
-            <p class="text-gray-600 text-[10px] md:text-xs">© 2025 ViralHeart — The best romantic viral video library. All rights reserved.</p>
-            <p class="text-gray-700 text-[9px] mt-2">For support or removal contact via official channel</p>
+            <p class="text-gray-600 text-[10px] md:text-xs">© 2025 ViralHeart — The most complete viral video list. Fresh romantic content daily.</p>
+            <p class="text-gray-700 text-[9px] mt-2">All videos are for preview purposes. Join for unlimited access.</p>
         </div>
     </footer>
-    
-    <!-- Tailwind config overrides: ensure line-clamp works (tailwind CDN already includes) -->
+
+    <!-- extra inline styles for better mobile & desktop behaviour -->
     <style>
-        /* manual line-clamp for safety */
-        .line-clamp-2 {
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-        /* better video aspect ratio management */
-        video {
-            outline: none;
-            background: #000;
-        }
-        /* mobile font scaling improvements */
         @media (max-width: 640px) {
-            body {
-                font-size: 14px;
-            }
             .video-card p {
                 font-size: 11px;
             }
+            .video-card .text-gray-500 {
+                font-size: 9px;
+            }
         }
-        /* smooth modal entry */
+        video:focus {
+            outline: none;
+        }
         #video-lightbox {
             transition: opacity 0.2s ease;
+        }
+        /* improve tap target on buttons */
+        a, button, .video-card {
+            cursor: pointer;
         }
     </style>
 </body>
