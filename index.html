@@ -26,17 +26,12 @@
             box-shadow: 0 20px 40px rgba(236, 72, 153, 0.3);
         }
         
-        /* Mobile touch optimization */
         @media (max-width: 640px) {
             .video-card:active {
                 transform: scale(0.98);
             }
-            .hero-bg h1 {
-                font-size: 28px;
-            }
         }
         
-        /* Line clamp for titles */
         .line-clamp-2 {
             display: -webkit-box;
             -webkit-line-clamp: 2;
@@ -44,7 +39,6 @@
             overflow: hidden;
         }
         
-        /* Lightbox styles */
         #video-lightbox {
             transition: all 0.3s ease;
         }
@@ -93,7 +87,6 @@
                 <p class="text-zinc-400 text-base md:text-xl mt-3">Click any video to watch</p>
             </div>
             
-            <!-- Responsive Grid: 2 cols mobile, 3 tablet, 4 desktop -->
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6" id="video-grid"></div>
 
             <div class="text-center mt-12 md:mt-16">
@@ -116,47 +109,47 @@
     </div>
 
     <script>
-        // === VIDEO DATA - Replace these with your actual video files ===
-        // Place your video files in 'videos/' folder and thumbnails in root or 'images/'
+        // === VIDEO DATA - Replace with your actual video files ===
+        // Use your own thumbnail JPG files and video MP4 files
         const videos = [
             {
                 title: "Bangladeshi Beautiful College Gf Arthi Hot Moments",
-                thumbnail: "https://placehold.co/400x300/1e1e2e/f43f5e?text=College+Video+1",
+                thumbnail: "Bangladeshi Beautiful College Gf Arthi Hot Boobs Press Give Blowjob.JPG",
                 videoUrl: "videos/video1.mp4"
             },
             {
                 title: "SL University Girl Romantic Story",
-                thumbnail: "https://placehold.co/400x300/2a1a2e/ec4899?text=University+Video+2",
+                thumbnail: "Sl Univerisity Girl Cum On Body.JPG",
                 videoUrl: "videos/video2.mp4"
             },
             {
                 title: "Heart Touching Love Story",
-                thumbnail: "https://placehold.co/400x300/1a1a2e/a855f7?text=Heart+Touching+3",
+                thumbnail: "images/thumb3.jpg",
                 videoUrl: "videos/video3.mp4"
             },
             {
                 title: "Viral Love Challenge",
-                thumbnail: "https://placehold.co/400x300/261c2f/d946ef?text=Love+Challenge+4",
+                thumbnail: "images/thumb4.jpg",
                 videoUrl: "videos/video4.mp4"
             },
             {
                 title: "Sweet Romantic Moment",
-                thumbnail: "https://placehold.co/400x300/1e1a2f/fb7185?text=Sweet+Moment+5",
+                thumbnail: "images/thumb5.jpg",
                 videoUrl: "videos/video5.mp4"
             },
             {
                 title: "Long Distance Love Reunion",
-                thumbnail: "https://placehold.co/400x300/2c1c2c/fc5c7c?text=Long+Distance+6",
+                thumbnail: "images/thumb6.jpg",
                 videoUrl: "videos/video6.mp4"
             },
             {
                 title: "Wedding Dance Viral",
-                thumbnail: "https://placehold.co/400x300/252525/e87979?text=Wedding+Dance+7",
+                thumbnail: "images/thumb7.jpg",
                 videoUrl: "videos/video7.mp4"
             },
             {
                 title: "True Love Forever",
-                thumbnail: "https://placehold.co/400x300/1f1a2e/f9a8d4?text=True+Love+8",
+                thumbnail: "images/thumb8.jpg",
                 videoUrl: "videos/video8.mp4"
             }
         ];
@@ -166,7 +159,7 @@
         const lightbox = document.getElementById('video-lightbox');
         const mainVideo = document.getElementById('main-video');
 
-        // Helper: Escape HTML to prevent injection
+        // Helper: Escape HTML
         function escapeHtml(str) {
             if (!str) return '';
             return str.replace(/[&<>]/g, function(m) {
@@ -211,7 +204,6 @@
             lightbox.classList.add('flex');
             document.body.classList.add('lightbox-open');
             
-            // Attempt autoplay
             mainVideo.play().catch(err => {
                 console.log("Tap play to start video");
             });
@@ -242,8 +234,6 @@
         window.addEventListener('DOMContentLoaded', () => {
             renderVideoGallery();
         });
-        
-        console.log("Love Life — Video gallery ready. Replace thumbnail URLs and video paths with your actual files.");
     </script>
 </body>
 </html>
