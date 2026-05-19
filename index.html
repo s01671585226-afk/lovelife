@@ -17,7 +17,7 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             background: #0a0a0a;
             color: #fff;
-            padding: 20px;
+            padding: 16px;
         }
 
         .container {
@@ -31,7 +31,7 @@
             flex-wrap: wrap;
             justify-content: center;
             gap: 15px;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             padding: 10px 0;
         }
 
@@ -81,49 +81,34 @@
             border-left: 4px solid #f43f5e;
         }
 
-        /* Video List */
+        /* VIDEO LIST - 2 COLUMN GRID, BIG SIZE THUMBNAILS, 4 ROWS (8 videos) */
         .video-list {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
         }
 
         .video-item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
             background: rgba(255, 255, 255, 0.05);
-            border-radius: 16px;
-            padding: 12px 16px;
+            border-radius: 20px;
+            overflow: hidden;
             cursor: pointer;
             transition: all 0.2s ease;
             border: 1px solid rgba(255, 255, 255, 0.08);
         }
 
-        .video-item:hover {
+        .video-item:active {
+            transform: scale(0.97);
             background: rgba(244, 63, 94, 0.1);
-            border-color: rgba(244, 63, 94, 0.3);
-            transform: translateX(4px);
         }
 
-        .video-number {
-            font-size: 18px;
-            font-weight: 700;
-            color: #f43f5e;
-            min-width: 40px;
-            text-align: center;
-        }
-
+        /* BIG THUMBNAIL */
         .video-thumb {
-            width: 60px;
-            height: 60px;
-            border-radius: 12px;
+            width: 100%;
+            aspect-ratio: 16 / 9;
             background: #1a1a2a;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            position: relative;
             overflow: hidden;
-            flex-shrink: 0;
         }
 
         .video-thumb img {
@@ -132,31 +117,47 @@
             object-fit: cover;
         }
 
-        .video-thumb i {
-            font-size: 24px;
-            color: #f43f5e;
+        .play-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .play-overlay i {
+            font-size: 48px;
+            color: white;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+        }
+
+        .video-item:hover .play-overlay {
+            background: rgba(0, 0, 0, 0.5);
         }
 
         .video-info {
-            flex: 1;
+            padding: 12px;
         }
 
         .video-title {
-            font-size: 14px;
-            font-weight: 500;
+            font-size: 13px;
+            font-weight: 600;
             line-height: 1.4;
-            margin-bottom: 4px;
+            margin-bottom: 5px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
 
         .video-badge {
             font-size: 11px;
             color: #f43f5e;
-        }
-
-        .play-icon {
-            color: #f43f5e;
-            font-size: 18px;
-            opacity: 0.7;
+            display: flex;
+            align-items: center;
+            gap: 4px;
         }
 
         /* Photo Album List - Grid Layout */
@@ -199,7 +200,7 @@
         .gif-section {
             display: flex;
             justify-content: space-between;
-            gap: 15px;
+            gap: 12px;
             margin: 20px 0;
         }
 
@@ -215,10 +216,8 @@
             color: white;
         }
 
-        .gif-card:hover {
-            transform: translateY(-4px);
-            border-color: #f43f5e;
-            box-shadow: 0 10px 20px rgba(244, 63, 94, 0.2);
+        .gif-card:active {
+            transform: scale(0.97);
         }
 
         .gif-image {
@@ -230,13 +229,13 @@
 
         .gif-title {
             padding: 10px;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 500;
             text-align: center;
             background: rgba(0,0,0,0.5);
         }
 
-        /* Lightbox for fullscreen */
+        /* Lightbox for video playback */
         .lightbox {
             display: none;
             position: fixed;
@@ -261,8 +260,7 @@
             position: relative;
         }
 
-        .lightbox-content video,
-        .lightbox-content img {
+        .lightbox-content video {
             width: 100%;
             border-radius: 16px;
             background: #000;
@@ -291,36 +289,7 @@
             color: #333;
         }
 
-        @media (max-width: 500px) {
-            body {
-                padding: 15px;
-            }
-            .btn {
-                padding: 10px 20px;
-                font-size: 14px;
-            }
-            .video-thumb {
-                width: 50px;
-                height: 50px;
-            }
-            .video-title {
-                font-size: 13px;
-            }
-            .video-number {
-                font-size: 16px;
-                min-width: 35px;
-            }
-            .photo-caption {
-                font-size: 9px;
-                padding: 6px;
-            }
-            .gif-title {
-                font-size: 10px;
-                padding: 7px;
-            }
-        }
-
-        /* Fullscreen thumbnail on mobile click */
+        /* Fullscreen modal for photos */
         .fullscreen-modal {
             display: none;
             position: fixed;
@@ -341,7 +310,7 @@
 
         .fullscreen-modal img {
             max-width: 100%;
-            max-height: 80%;
+            max-height: 90%;
             object-fit: contain;
         }
 
@@ -352,10 +321,41 @@
             background: rgba(0,0,0,0.7);
             border: none;
             color: white;
-            font-size: 30px;
-            padding: 10px 15px;
+            font-size: 28px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @media (max-width: 500px) {
+            body {
+                padding: 12px;
+            }
+            .btn {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+            .video-title {
+                font-size: 12px;
+            }
+            .play-overlay i {
+                font-size: 36px;
+            }
+            .photo-caption {
+                font-size: 9px;
+                padding: 6px;
+            }
+            .gif-title {
+                font-size: 9px;
+                padding: 7px;
+            }
+            .video-info {
+                padding: 10px;
+            }
         }
     </style>
 </head>
@@ -372,7 +372,7 @@
         </button>
     </div>
 
-    <!-- Video List Section -->
+    <!-- Video List Section - 2 COLUMN, 4 ROWS (8 videos, BIG THUMBNAILS) -->
     <div class="section-title"><i class="fa-solid fa-list-ul"></i> Trending Video List</div>
     <div class="video-list" id="video-list"></div>
 
@@ -397,33 +397,33 @@
     </div>
 </div>
 
-<!-- Fullscreen modal for photo thumbnails (mobile full screen) -->
-<div id="fullscreen-modal" class="fullscreen-modal" onclick="closeFullscreen()">
+<!-- Fullscreen modal for photo thumbnails -->
+<div id="fullscreen-modal" class="fullscreen-modal">
     <button class="fullscreen-close" onclick="closeFullscreen()">✕</button>
     <img id="fullscreen-img" src="" alt="Fullscreen">
 </div>
 
 <script>
-    // ==================== VIDEO DATA ====================
+    // ==================== VIDEO DATA - 8 VIDEOS (2 COLUMN x 4 ROWS) ====================
     const videos = [
-        { title: "🔥 College Romance Goes Viral - 12M Views", thumbnail: "https://placehold.co/400x400/1e1e2e/f43f5e?text=V1", videoUrl: "videos/video1.mp4" },
-        { title: "❤️ Emotional Love Confession (TikTok Hit)", thumbnail: "https://placehold.co/400x400/2a1a2e/ec4899?text=V2", videoUrl: "videos/video2.mp4" },
-        { title: "💋 Unexpected Kiss Compilation", thumbnail: "https://placehold.co/400x400/1a1a2e/a855f7?text=V3", videoUrl: "videos/video3.mp4" },
-        { title: "🌅 Sunset Proposal That Broke Internet", thumbnail: "https://placehold.co/400x400/261c2f/d946ef?text=V4", videoUrl: "videos/video4.mp4" },
-        { title: "🎁 Surprise Gift Reaction", thumbnail: "https://placehold.co/400x400/1e1a2f/fb7185?text=V5", videoUrl: "videos/video5.mp4" },
-        { title: "✈️ Long Distance Love Reunion", thumbnail: "https://placehold.co/400x400/2c1c2c/fc5c7c?text=V6", videoUrl: "videos/video6.mp4" },
-        { title: "💒 Wedding Dance That Went Viral", thumbnail: "https://placehold.co/400x400/252525/e87979?text=V7", videoUrl: "videos/video7.mp4" },
-        { title: "📱 Best Friends to Lovers Story", thumbnail: "https://placehold.co/400x400/1f1a2e/f9a8d4?text=V8", videoUrl: "videos/video8.mp4" }
+        { title: "🔥 College Romance Goes Viral - 12M Views", thumbnail: "https://placehold.co/600x400/1e1e2e/f43f5e?text=College+Love", videoUrl: "videos/video1.mp4" },
+        { title: "❤️ Emotional Love Confession (TikTok Hit)", thumbnail: "https://placehold.co/600x400/2a1a2e/ec4899?text=Confession", videoUrl: "videos/video2.mp4" },
+        { title: "💋 Unexpected Kiss Compilation", thumbnail: "https://placehold.co/600x400/1a1a2e/a855f7?text=Kiss+Comp", videoUrl: "videos/video3.mp4" },
+        { title: "🌅 Sunset Proposal That Broke Internet", thumbnail: "https://placehold.co/600x400/261c2f/d946ef?text=Proposal", videoUrl: "videos/video4.mp4" },
+        { title: "🎁 Surprise Gift Reaction", thumbnail: "https://placehold.co/600x400/1e1a2f/fb7185?text=Surprise", videoUrl: "videos/video5.mp4" },
+        { title: "✈️ Long Distance Love Reunion", thumbnail: "https://placehold.co/600x400/2c1c2c/fc5c7c?text=Reunion", videoUrl: "videos/video6.mp4" },
+        { title: "💒 Wedding Dance That Went Viral", thumbnail: "https://placehold.co/600x400/252525/e87979?text=Wedding", videoUrl: "videos/video7.mp4" },
+        { title: "📱 Best Friends to Lovers Story", thumbnail: "https://placehold.co/600x400/1f1a2e/f9a8d4?text=Friends+to+Lovers", videoUrl: "videos/video8.mp4" }
     ];
 
     // ==================== PHOTO ALBUM DATA ====================
     const photos = [
-        { url: "https://placehold.co/600x600/1e1e2e/f43f5e?text=Photo+1", caption: "Romantic Moment" },
-        { url: "https://placehold.co/600x600/2a1a2e/ec4899?text=Photo+2", caption: "Sunset Love" },
-        { url: "https://placehold.co/600x600/1a1a2e/a855f7?text=Photo+3", caption: "Cute Couple" },
-        { url: "https://placehold.co/600x600/261c2f/d946ef?text=Photo+4", caption: "Kiss Scene" },
-        { url: "https://placehold.co/600x600/1e1a2f/fb7185?text=Photo+5", caption: "Proposal" },
-        { url: "https://placehold.co/600x600/2c1c2c/fc5c7c?text=Photo+6", caption: "Wedding Dance" }
+        { url: "https://placehold.co/800x800/1e1e2e/f43f5e?text=Photo+1", caption: "Romantic Moment" },
+        { url: "https://placehold.co/800x800/2a1a2e/ec4899?text=Photo+2", caption: "Sunset Love" },
+        { url: "https://placehold.co/800x800/1a1a2e/a855f7?text=Photo+3", caption: "Cute Couple" },
+        { url: "https://placehold.co/800x800/261c2f/d946ef?text=Photo+4", caption: "Kiss Scene" },
+        { url: "https://placehold.co/800x800/1e1a2f/fb7185?text=Photo+5", caption: "Proposal" },
+        { url: "https://placehold.co/800x800/2c1c2c/fc5c7c?text=Photo+6", caption: "Wedding Dance" }
     ];
 
     // ==================== GIF DATA (Online Video Chat - 3 GIFs) ====================
@@ -442,7 +442,7 @@
     const fullscreenModal = document.getElementById('fullscreen-modal');
     const fullscreenImg = document.getElementById('fullscreen-img');
 
-    // ========== RENDER VIDEO LIST ==========
+    // ========== RENDER VIDEO LIST - 2 COLUMN, BIG THUMBNAILS ==========
     function renderVideoList() {
         videoListEl.innerHTML = '';
 
@@ -452,16 +452,18 @@
             item.onclick = () => playVideo(index);
 
             item.innerHTML = `
-                <div class="video-number">${(index + 1).toString().padStart(2, '0')}</div>
                 <div class="video-thumb">
-                    <img src="${video.thumbnail}" alt="thumbnail" onerror="this.parentElement.innerHTML='<i class=\'fa-solid fa-play\'></i>'">
+                    <img src="${video.thumbnail}" alt="thumbnail" loading="lazy" onerror="this.src='https://placehold.co/600x400/2d2d3a/f43f5e?text=Video'">
+                    <div class="play-overlay">
+                        <i class="fas fa-play-circle"></i>
+                    </div>
                 </div>
                 <div class="video-info">
                     <div class="video-title">${escapeHtml(video.title)}</div>
-                    <div class="video-badge"><i class="fa-regular fa-eye"></i> trending</div>
-                </div>
-                <div class="play-icon">
-                    <i class="fa-solid fa-circle-play"></i>
+                    <div class="video-badge">
+                        <i class="fa-regular fa-eye"></i> trending
+                        <span style="margin-left: auto; font-size: 10px;">#${index+1}</span>
+                    </div>
                 </div>
             `;
 
@@ -469,7 +471,7 @@
         });
     }
 
-    // ========== RENDER PHOTO ALBUM (click opens fullscreen) ==========
+    // ========== RENDER PHOTO ALBUM ==========
     function renderPhotoAlbum() {
         photoAlbumEl.innerHTML = '';
 
@@ -487,7 +489,7 @@
         });
     }
 
-    // ========== RENDER 3 GIF IMAGES (Online Video Chat) ==========
+    // ========== RENDER 3 GIF IMAGES ==========
     function renderGifs() {
         gifSectionEl.innerHTML = '';
 
@@ -496,7 +498,6 @@
             card.href = gif.link;
             card.target = "_blank";
             card.className = 'gif-card';
-            card.setAttribute('data-gif-index', index);
 
             card.innerHTML = `
                 <img src="${gif.image}" class="gif-image" alt="gif" loading="lazy" onerror="this.src='https://placehold.co/300x300/2d2d3a/f43f5e?text=GIF+${index+1}'">
@@ -528,7 +529,7 @@
         document.body.style.overflow = '';
     }
 
-    // ========== FULLSCREEN FOR PHOTO THUMBNAILS (Mobile Full Screen Show) ==========
+    // ========== FULLSCREEN FOR PHOTOS ==========
     function openFullscreen(imageUrl) {
         fullscreenImg.src = imageUrl;
         fullscreenModal.classList.add('active');
