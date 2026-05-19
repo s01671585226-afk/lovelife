@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
-    <title>Viral Video List + Photo Album | Online Chat</title>
+    <title>Viral Video List + Photo Album | Full Screen Mobile</title>
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <style>
@@ -100,10 +100,9 @@
             border: 1px solid rgba(255, 255, 255, 0.08);
         }
 
-        .video-item:hover {
-            background: rgba(244, 63, 94, 0.1);
-            border-color: rgba(244, 63, 94, 0.3);
-            transform: translateX(4px);
+        .video-item:active {
+            background: rgba(244, 63, 94, 0.15);
+            transform: scale(0.98);
         }
 
         .video-number {
@@ -132,11 +131,6 @@
             object-fit: cover;
         }
 
-        .video-thumb i {
-            font-size: 24px;
-            color: #f43f5e;
-        }
-
         .video-info {
             flex: 1;
         }
@@ -159,7 +153,7 @@
             opacity: 0.7;
         }
 
-        /* Photo Album List - Big Thumbnails for Mobile */
+        /* Photo Album - BIG THUMBNAILS for mobile */
         .photo-album {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -176,12 +170,12 @@
             border: 1px solid rgba(255, 255, 255, 0.08);
         }
 
-        .photo-item:hover {
-            transform: translateY(-3px);
-            border-color: rgba(244, 63, 94, 0.4);
+        .photo-item:active {
+            transform: scale(0.97);
+            border-color: #f43f5e;
         }
 
-        /* BIG THUMBNAIL - Full width, tall image for mobile */
+        /* BIG THUMBNAIL - Full width square */
         .photo-img {
             width: 100%;
             aspect-ratio: 1 / 1;
@@ -217,10 +211,8 @@
             color: white;
         }
 
-        .gif-card:hover {
-            transform: translateY(-4px);
-            border-color: #f43f5e;
-            box-shadow: 0 10px 20px rgba(244, 63, 94, 0.2);
+        .gif-card:active {
+            transform: scale(0.97);
         }
 
         .gif-image {
@@ -281,11 +273,7 @@
             opacity: 0.8;
         }
 
-        .close-lightbox:hover {
-            opacity: 1;
-        }
-
-        /* FULLSCREEN MODAL FOR BIG THUMBNAILS - Mobile full screen JPG show */
+        /* FULLSCREEN MODAL FOR ALL THUMBNAILS & PHOTOS - Mobile full screen */
         .fullscreen-modal {
             display: none;
             position: fixed;
@@ -366,13 +354,8 @@
                 font-size: 9px;
                 padding: 8px;
             }
-            .section-title {
-                font-size: 16px;
-                margin: 20px 0 12px 0;
-            }
         }
 
-        /* For larger screens, photo album can be 3 columns but mobile first 2 columns */
         @media (min-width: 600px) {
             .photo-album {
                 grid-template-columns: repeat(3, 1fr);
@@ -397,11 +380,11 @@
     <div class="section-title"><i class="fa-solid fa-list-ul"></i> Trending Video List</div>
     <div class="video-list" id="video-list"></div>
 
-    <!-- Photo Album List Section - BIG THUMBNAILS -->
-    <div class="section-title"><i class="fa-solid fa-images"></i> Photo Album <span style="font-size: 12px; color:#f43f5e;">(tap image for full screen)</span></div>
+    <!-- Photo Album List - BIG THUMBNAILS (full screen on tap) -->
+    <div class="section-title"><i class="fa-solid fa-images"></i> Photo Album <span style="font-size: 12px; color:#f43f5e;">(tap for full screen)</span></div>
     <div class="photo-album" id="photo-album"></div>
 
-    <!-- Online Video Chat - 3 GIF Images with spacing -->
+    <!-- Online Video Chat - 3 GIF Images -->
     <div class="section-title"><i class="fa-solid fa-video"></i> Online Video Chat</div>
     <div class="gif-section" id="gif-section"></div>
 
@@ -418,38 +401,38 @@
     </div>
 </div>
 
-<!-- FULLSCREEN MODAL for BIG JPG PHOTO THUMBNAILS - Mobile full screen show -->
-<div id="fullscreen-modal" class="fullscreen-modal" onclick="closeFullscreen()">
+<!-- FULLSCREEN MODAL - for all images (video thumbnails + photos + GIFs) -->
+<div id="fullscreen-modal" class="fullscreen-modal">
     <button class="fullscreen-close" onclick="closeFullscreen()">
         <i class="fa-regular fa-circle-xmark"></i>
     </button>
-    <img id="fullscreen-img" src="" alt="Full Screen Photo">
+    <img id="fullscreen-img" src="" alt="Full Screen Image">
 </div>
 
 <script>
     // ==================== VIDEO DATA ====================
     const videos = [
-        { title: "🔥 College Romance Goes Viral - 12M Views", thumbnail: "https://placehold.co/400x400/1e1e2e/f43f5e?text=V1", videoUrl: "videos/video1.mp4" },
-        { title: "❤️ Emotional Love Confession (TikTok Hit)", thumbnail: "https://placehold.co/400x400/2a1a2e/ec4899?text=V2", videoUrl: "videos/video2.mp4" },
-        { title: "💋 Unexpected Kiss Compilation", thumbnail: "https://placehold.co/400x400/1a1a2e/a855f7?text=V3", videoUrl: "videos/video3.mp4" },
-        { title: "🌅 Sunset Proposal That Broke Internet", thumbnail: "https://placehold.co/400x400/261c2f/d946ef?text=V4", videoUrl: "videos/video4.mp4" },
-        { title: "🎁 Surprise Gift Reaction", thumbnail: "https://placehold.co/400x400/1e1a2f/fb7185?text=V5", videoUrl: "videos/video5.mp4" },
-        { title: "✈️ Long Distance Love Reunion", thumbnail: "https://placehold.co/400x400/2c1c2c/fc5c7c?text=V6", videoUrl: "videos/video6.mp4" },
-        { title: "💒 Wedding Dance That Went Viral", thumbnail: "https://placehold.co/400x400/252525/e87979?text=V7", videoUrl: "videos/video7.mp4" },
-        { title: "📱 Best Friends to Lovers Story", thumbnail: "https://placehold.co/400x400/1f1a2e/f9a8d4?text=V8", videoUrl: "videos/video8.mp4" }
+        { title: "🔥 College Romance Goes Viral - 12M Views", thumbnail: "https://placehold.co/800x800/1e1e2e/f43f5e?text=College+Love+1", videoUrl: "videos/video1.mp4" },
+        { title: "❤️ Emotional Love Confession (TikTok Hit)", thumbnail: "https://placehold.co/800x800/2a1a2e/ec4899?text=Love+Confession+2", videoUrl: "videos/video2.mp4" },
+        { title: "💋 Unexpected Kiss Compilation", thumbnail: "https://placehold.co/800x800/1a1a2e/a855f7?text=Kiss+Comp+3", videoUrl: "videos/video3.mp4" },
+        { title: "🌅 Sunset Proposal That Broke Internet", thumbnail: "https://placehold.co/800x800/261c2f/d946ef?text=Sunset+Proposal+4", videoUrl: "videos/video4.mp4" },
+        { title: "🎁 Surprise Gift Reaction", thumbnail: "https://placehold.co/800x800/1e1a2f/fb7185?text=Surprise+5", videoUrl: "videos/video5.mp4" },
+        { title: "✈️ Long Distance Love Reunion", thumbnail: "https://placehold.co/800x800/2c1c2c/fc5c7c?text=Long+Distance+6", videoUrl: "videos/video6.mp4" },
+        { title: "💒 Wedding Dance That Went Viral", thumbnail: "https://placehold.co/800x800/252525/e87979?text=Wedding+Dance+7", videoUrl: "videos/video7.mp4" },
+        { title: "📱 Best Friends to Lovers Story", thumbnail: "https://placehold.co/800x800/1f1a2e/f9a8d4?text=Friends+to+Lovers+8", videoUrl: "videos/video8.mp4" }
     ];
 
-    // ==================== PHOTO ALBUM DATA - Big JPG Images (High quality) ====================
+    // ==================== PHOTO ALBUM DATA - High quality big images ====================
     const photos = [
-        { url: "https://placehold.co/800x800/1e1e2e/f43f5e?text=Romantic+Love+1", caption: "💕 Romantic Sunset" },
-        { url: "https://placehold.co/800x800/2a1a2e/ec4899?text=Couple+2", caption: "💖 Couple Goals" },
-        { url: "https://placehold.co/800x800/1a1a2e/a855f7?text=Kiss+3", caption: "💋 Sweet Kiss" },
-        { url: "https://placehold.co/800x800/261c2f/d946ef?text=Proposal+4", caption: "💍 Proposal Moment" },
-        { url: "https://placehold.co/800x800/1e1a2f/fb7185?text=Wedding+5", caption: "💒 Wedding Dance" },
-        { url: "https://placehold.co/800x800/2c1c2c/fc5c7c?text=Romantic+6", caption: "🌹 Rose Day" }
+        { url: "https://placehold.co/1200x1200/1e1e2e/f43f5e?text=Romantic+Sunset", caption: "💕 Romantic Sunset" },
+        { url: "https://placehold.co/1200x1200/2a1a2e/ec4899?text=Couple+Goals", caption: "💖 Couple Goals" },
+        { url: "https://placehold.co/1200x1200/1a1a2e/a855f7?text=Sweet+Kiss", caption: "💋 Sweet Kiss" },
+        { url: "https://placehold.co/1200x1200/261c2f/d946ef?text=Proposal+Love", caption: "💍 Proposal Moment" },
+        { url: "https://placehold.co/1200x1200/1e1a2f/fb7185?text=Wedding+Dance", caption: "💒 Wedding Dance" },
+        { url: "https://placehold.co/1200x1200/2c1c2c/fc5c7c?text=Rose+Day", caption: "🌹 Rose Day Special" }
     ];
 
-    // ==================== GIF DATA (Online Video Chat - 3 GIFs) ====================
+    // ==================== GIF DATA (Online Video Chat) ====================
     const gifs = [
         { image: "https://media.giphy.com/media/3o7abKhOpu0N9H8TXm/giphy.gif?cid=790b7611z5y5p5z5p5z5p5z5p5z5p5z5p5z5p5z5p5z5&ep=v1_gifs&rid=giphy.gif&ct=g", title: "Live Chat Room", link: "https://www.profitablecpmratenetwork.com/d7ctaq4g?key=163059a9717a51ba0b50a9a9fd33df31" },
         { image: "https://media.giphy.com/media/l0MYt5jH6gkTWJQxG/giphy.gif?cid=790b7611z5y5p5z5p5z5p5z5p5z5p5z5p5z5p5z5p5z5&ep=v1_gifs&rid=giphy.gif&ct=g", title: "Video Call Girls", link: "https://www.profitablecpmratenetwork.com/d7ctaq4g?key=163059a9717a51ba0b50a9a9fd33df31" },
@@ -465,19 +448,21 @@
     const fullscreenModal = document.getElementById('fullscreen-modal');
     const fullscreenImg = document.getElementById('fullscreen-img');
 
-    // ========== RENDER VIDEO LIST ==========
+    // ========== RENDER VIDEO LIST (tap thumbnail opens full screen) ==========
     function renderVideoList() {
         videoListEl.innerHTML = '';
 
         videos.forEach((video, index) => {
             const item = document.createElement('div');
             item.className = 'video-item';
+            
+            // Play video on item click
             item.onclick = () => playVideo(index);
 
             item.innerHTML = `
                 <div class="video-number">${(index + 1).toString().padStart(2, '0')}</div>
-                <div class="video-thumb">
-                    <img src="${video.thumbnail}" alt="thumbnail" loading="lazy" onerror="this.parentElement.innerHTML='<i class=\'fa-solid fa-play\'></i>'">
+                <div class="video-thumb" data-fullscreen-img="${video.thumbnail}">
+                    <img src="${video.thumbnail}" alt="thumbnail" loading="lazy" onerror="this.parentElement.innerHTML='<i class=\\'fa-solid fa-play\\'></i>'">
                 </div>
                 <div class="video-info">
                     <div class="video-title">${escapeHtml(video.title)}</div>
@@ -487,6 +472,16 @@
                     <i class="fa-solid fa-circle-play"></i>
                 </div>
             `;
+            
+            // Make thumbnail image clickable separately for full screen
+            const thumbDiv = item.querySelector('.video-thumb');
+            if (thumbDiv) {
+                thumbDiv.style.cursor = 'pointer';
+                thumbDiv.onclick = (e) => {
+                    e.stopPropagation();
+                    openFullscreen(video.thumbnail);
+                };
+            }
 
             videoListEl.appendChild(item);
         });
@@ -499,7 +494,7 @@
         photos.forEach((photo, index) => {
             const item = document.createElement('div');
             item.className = 'photo-item';
-            // Open full screen with big JPG image
+            // Open full screen with big image
             item.onclick = () => openFullscreen(photo.url);
 
             item.innerHTML = `
@@ -511,22 +506,26 @@
         });
     }
 
-    // ========== RENDER 3 GIF IMAGES (Online Video Chat) ==========
+    // ========== RENDER 3 GIF IMAGES (tap opens full screen, then click goes to link) ==========
     function renderGifs() {
         gifSectionEl.innerHTML = '';
 
         gifs.forEach((gif, index) => {
-            const card = document.createElement('a');
-            card.href = gif.link;
-            card.target = "_blank";
+            const card = document.createElement('div');
             card.className = 'gif-card';
-            card.setAttribute('data-gif-index', index);
+            
+            // First tap: open full screen GIF
+            // Second tap or link: user can click join button separately
+            card.onclick = (e) => {
+                e.stopPropagation();
+                openFullscreen(gif.image);
+            };
 
             card.innerHTML = `
                 <img src="${gif.image}" class="gif-image" alt="gif" loading="lazy" onerror="this.src='https://placehold.co/300x300/2d2d3a/f43f5e?text=GIF+${index+1}'">
                 <div class="gif-title"><i class="fa-regular fa-message"></i> ${escapeHtml(gif.title)}</div>
             `;
-
+            
             gifSectionEl.appendChild(card);
         });
     }
@@ -552,8 +551,9 @@
         document.body.style.overflow = '';
     }
 
-    // ========== FULLSCREEN FOR BIG JPG PHOTO THUMBNAILS (Mobile Full Screen Show) ==========
+    // ========== FULLSCREEN FOR ALL IMAGES (Video Thumbnails, Photos, GIFs) ==========
     function openFullscreen(imageUrl) {
+        if (!imageUrl) return;
         fullscreenImg.src = imageUrl;
         fullscreenModal.classList.add('active');
         document.body.style.overflow = 'hidden';
