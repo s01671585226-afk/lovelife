@@ -2,360 +2,407 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
-    <title>ViralHeart • Trending Video List First</title>
-    <!-- Tailwind CSS + Font Awesome -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Viral Video List</title>
+    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <!-- Professional Font: Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background: #0a0a0a; scroll-behavior: smooth; }
-        .gradient-text { background: linear-gradient(135deg, #f43f5e, #ec4899, #a855f7); -webkit-background-clip: text; background-clip: text; color: transparent; }
-        
-        /* Video List Item Styles - Primary Section */
-        .video-list-item {
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Header with buttons */
+        .header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            padding: 10px 0;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 28px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 50px;
+            text-decoration: none;
             transition: all 0.2s ease;
             cursor: pointer;
-            -webkit-tap-highlight-color: transparent;
+            border: none;
         }
-        .video-list-item:active { background-color: rgba(244, 63, 94, 0.15); transform: scale(0.99); }
-        @media (min-width: 768px) {
-            .video-list-item:hover { background-color: rgba(244, 63, 94, 0.08); transform: translateX(6px); border-left-color: #f43f5e; }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #f43f5e, #ec4899);
+            color: white;
+            box-shadow: 0 4px 12px rgba(244, 63, 94, 0.3);
         }
-        
-        /* Video Card Styles for Album Section */
-        .video-card { transition: all 0.25s ease; cursor: pointer; -webkit-tap-highlight-color: transparent; }
-        .video-card:active { transform: scale(0.97); }
-        @media (min-width: 768px) {
-            .video-card:hover { transform: translateY(-5px); box-shadow: 0 20px 30px -12px rgba(244, 63, 94, 0.3); }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(244, 63, 94, 0.4);
         }
-        
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        /* Video List */
+        .video-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .video-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 12px 16px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .video-item:hover {
+            background: rgba(244, 63, 94, 0.1);
+            border-color: rgba(244, 63, 94, 0.3);
+            transform: translateX(4px);
+        }
+
+        .video-number {
+            font-size: 18px;
+            font-weight: 700;
+            color: #f43f5e;
+            min-width: 40px;
+            text-align: center;
+        }
+
+        .video-thumb {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            background: #1a1a2a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .video-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .video-thumb i {
+            font-size: 24px;
+            color: #f43f5e;
+        }
+
+        .video-info {
+            flex: 1;
+        }
+
+        .video-title {
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 1.4;
+            margin-bottom: 4px;
+        }
+
+        .video-badge {
+            font-size: 11px;
+            color: #f43f5e;
+        }
+
+        .play-icon {
+            color: #f43f5e;
+            font-size: 18px;
+            opacity: 0.7;
+        }
+
         /* Lightbox */
-        #lightbox { transition: opacity 0.25s ease; }
-        body.lightbox-open { overflow: hidden; }
-        
-        /* Line clamp */
-        .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-        .line-clamp-1 { display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
-        
-        /* Custom scrollbar */
-        ::-webkit-scrollbar { width: 4px; }
-        ::-webkit-scrollbar-track { background: #1a1a1a; }
-        ::-webkit-scrollbar-thumb { background: #ec4899; border-radius: 20px; }
-        
-        /* Mobile optimization */
-        @media (max-width: 640px) {
-            .video-list-item .list-title { font-size: 13px; }
-            .video-card .video-title { font-size: 11px; }
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.96);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(8px);
         }
-        .list-number { font-feature-settings: "tnum"; font-variant-numeric: tabular-nums; }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            width: 90%;
+            max-width: 900px;
+            position: relative;
+        }
+
+        .lightbox-content video {
+            width: 100%;
+            border-radius: 16px;
+            background: #000;
+        }
+
+        .close-lightbox {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+            opacity: 0.8;
+        }
+
+        .close-lightbox:hover {
+            opacity: 1;
+        }
+
+        /* Footer text - minimal */
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 11px;
+            color: #333;
+        }
+
+        @media (max-width: 500px) {
+            body {
+                padding: 15px;
+            }
+            .btn {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+            .video-thumb {
+                width: 50px;
+                height: 50px;
+            }
+            .video-title {
+                font-size: 13px;
+            }
+            .video-number {
+                font-size: 16px;
+                min-width: 35px;
+            }
+        }
     </style>
 </head>
-<body class="bg-black text-white">
+<body>
 
-    <!-- Top Banner CTA -->
-    <a href="https://www.profitablecpmratenetwork.com/d7ctaq4g?key=163059a9717a51ba0b50a9a9fd33df31" 
-       target="_blank" 
-       rel="noopener noreferrer"
-       class="block w-full bg-gradient-to-r from-rose-500 to-pink-500 py-2.5 text-center text-xs sm:text-sm font-semibold tracking-wide shadow-md">
-        🔥 Trending Viral Videos — Watch Now & Get Exclusive Access <i class="fa-solid fa-arrow-right ml-1 text-[10px]"></i>
-    </a>
-
-    <!-- Navbar - Clean & Sticky -->
-    <nav class="sticky top-0 z-50 bg-black/80 backdrop-blur-xl border-b border-white/10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 md:py-4 flex justify-between items-center">
-            <div class="flex items-center gap-2">
-                <i class="fa-solid fa-heart text-pink-500 text-xl md:text-2xl"></i>
-                <span class="font-bold text-lg md:text-xl tracking-tight gradient-text">ViralHeart</span>
-            </div>
-            <a href="https://www.profitablecpmratenetwork.com/d7ctaq4g?key=163059a9717a51ba0b50a9a9fd33df31" 
-               target="_blank"
-               class="bg-white/5 border border-white/20 hover:bg-pink-500 hover:border-pink-500 transition-all duration-200 px-4 md:px-5 py-1.5 rounded-full text-xs md:text-sm font-medium">
-                <i class="fa-regular fa-bell mr-1"></i> Join
-            </a>
-        </div>
-    </nav>
-
-    <!-- Hero Section - Compact -->
-    <section class="relative py-12 md:py-16 overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-br from-zinc-900 via-black to-rose-950/20"></div>
-        <div class="relative max-w-6xl mx-auto px-5 text-center z-10">
-            <div class="inline-flex items-center gap-1.5 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full px-3 py-1 mb-4">
-                <i class="fa-solid fa-fire text-pink-500 text-xs"></i>
-                <span class="text-[10px] sm:text-xs text-gray-300 tracking-wide">🔥 TRENDING NOW</span>
-            </div>
-            <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-3">
-                <span class="gradient-text">Trending Videos</span>
-                <br>First on the Page
-            </h1>
-            <p class="text-gray-300 text-sm sm:text-base max-w-xl mx-auto">Watch the most shared romantic & emotional clips. Updated daily.</p>
-            <div class="mt-5 flex flex-col sm:flex-row gap-3 justify-center">
-                <a href="#video-list-primary" class="inline-flex items-center justify-center gap-2 bg-pink-500 hover:bg-pink-600 text-white font-semibold px-5 py-2 rounded-full text-sm transition-all shadow-lg shadow-pink-500/25">
-                    <i class="fa-solid fa-list-ul"></i> View List
-                </a>
-                <a href="https://www.profitablecpmratenetwork.com/d7ctaq4g?key=163059a9717a51ba0b50a9a9fd33df31" target="_blank" class="inline-flex items-center justify-center gap-2 bg-white/5 border border-white/20 hover:bg-white/10 rounded-full px-5 py-2 text-sm font-medium transition">
-                    <i class="fa-regular fa-star"></i> Full Access
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===================== PRIMARY SECTION: TRENDING VIDEO LIST (FIRST CONTENT) ===================== -->
-    <section id="video-list-primary" class="py-10 md:py-16 bg-black scroll-mt-16">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6">
-            <div class="flex flex-col items-center text-center mb-6 md:mb-8">
-                <div class="inline-flex items-center gap-2 bg-white/5 rounded-full px-3 py-1 border border-white/10 mb-2">
-                    <i class="fa-solid fa-chart-simple text-pink-400 text-xs"></i>
-                    <span class="text-[10px] sm:text-xs text-gray-400">viral排行榜 • daily top picks</span>
-                </div>
-                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight">
-                    <span class="gradient-text">📋 Trending Video List</span>
-                </h2>
-                <p class="text-gray-400 text-xs sm:text-sm mt-2">Tap any video to watch instantly — numbered list view</p>
-            </div>
-
-            <!-- LIST VIEW CONTAINER - appears FIRST on page -->
-            <div class="space-y-2.5 md:space-y-3" id="video-list-container"></div>
-
-            <!-- Divider -->
-            <div class="relative my-10 md:my-14">
-                <div class="absolute inset-0 flex items-center">
-                    <div class="w-full border-t border-white/10"></div>
-                </div>
-                <div class="relative flex justify-center">
-                    <span class="bg-black px-4 text-[10px] sm:text-xs text-gray-500"><i class="fa-regular fa-album-collection mr-1"></i> more videos below</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===================== SECONDARY SECTION: VIDEO ALBUM (GRID VIEW AFTER LIST) ===================== -->
-    <section id="video-album" class="py-10 md:py-16 bg-zinc-950/30 scroll-mt-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6">
-            <div class="flex flex-col items-center text-center mb-6 md:mb-10">
-                <div class="inline-flex items-center gap-2 bg-white/5 rounded-full px-3 py-1 border border-white/10 mb-2">
-                    <i class="fa-solid fa-grid-2 text-pink-400 text-xs"></i>
-                    <span class="text-[10px] sm:text-xs text-gray-400">complete collection</span>
-                </div>
-                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight">
-                    <span class="gradient-text">🎬 Full Video Album</span>
-                </h2>
-                <p class="text-gray-400 text-xs sm:text-sm mt-2">Browse all viral videos in grid view</p>
-            </div>
-
-            <!-- Responsive Grid: 2,3,4 columns -->
-            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-5" id="video-grid"></div>
-
-            <!-- Bottom CTA -->
-            <div class="text-center mt-10 md:mt-14">
-                <a href="https://www.profitablecpmratenetwork.com/d7ctaq4g?key=163059a9717a51ba0b50a9a9fd33df31" 
-                   target="_blank" 
-                   class="inline-flex items-center justify-center gap-2 w-full sm:w-auto bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white font-bold py-3 px-6 rounded-xl text-sm shadow-xl transition-all duration-300 hover:scale-[1.02] active:scale-100">
-                    <i class="fa-solid fa-bolt"></i> Unlock Full Library
-                    <i class="fa-solid fa-arrow-right text-xs"></i>
-                </a>
-                <p class="text-gray-500 text-[11px] mt-3">✨ 500+ viral videos • updated weekly</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Simple Stats Bar -->
-    <div class="border-t border-white/5 border-b border-white/5 py-3 bg-black/30">
-        <div class="max-w-4xl mx-auto px-5 flex flex-wrap justify-center gap-6 text-xs sm:text-sm text-gray-400">
-            <div class="flex items-center gap-2"><i class="fa-regular fa-clock text-pink-400"></i> Daily Top 10</div>
-            <div class="flex items-center gap-2"><i class="fa-solid fa-share-nodes text-pink-400"></i> Most Shared</div>
-            <div class="flex items-center gap-2"><i class="fa-regular fa-heart text-pink-400"></i> Romantic Trends</div>
-            <div class="flex items-center gap-2"><i class="fa-solid fa-chart-line text-pink-400"></i> Viral Rank</div>
-        </div>
+<div class="container">
+    <!-- Two Buttons: Join Now & Watch Now -->
+    <div class="header">
+        <a href="https://www.profitablecpmratenetwork.com/d7ctaq4g?key=163059a9717a51ba0b50a9a9fd33df31" target="_blank" class="btn btn-primary">
+            <i class="fa-solid fa-user-plus"></i> Join Now
+        </a>
+        <button onclick="scrollToVideoList()" class="btn btn-secondary">
+            <i class="fa-solid fa-play"></i> Watch Now
+        </button>
     </div>
 
-    <!-- Lightbox Modal -->
-    <div id="lightbox" class="fixed inset-0 bg-black/95 backdrop-blur-md z-[9999] hidden items-center justify-center">
-        <div class="relative w-full max-w-3xl px-4">
-            <button id="close-lightbox" class="absolute -top-10 right-2 text-white/70 hover:text-pink-400 text-3xl transition">
-                <i class="fa-regular fa-circle-xmark"></i>
-            </button>
-            <div class="bg-black/30 rounded-xl overflow-hidden border border-white/10">
-                <video id="video-player" class="w-full h-auto max-h-[70vh]" controls playsinline></video>
-            </div>
-            <p class="text-center text-gray-500 text-[11px] mt-3">🎬 Tap play — full controls</p>
-        </div>
+    <!-- Video List Only -->
+    <div class="video-list" id="video-list"></div>
+
+    <div class="footer">
+        <span>✦ trending viral videos ✦</span>
     </div>
+</div>
 
-    <!-- Footer -->
-    <footer class="py-6 md:py-8">
-        <div class="max-w-7xl mx-auto px-5 text-center">
-            <div class="flex flex-wrap justify-center gap-5 text-[10px] sm:text-xs text-gray-600 mb-3">
-                <span><i class="fa-solid fa-heart text-pink-500 mr-1 text-[9px]"></i> ViralHeart</span>
-                <span>Trending Videos First</span>
-                <span>Daily Updates</span>
-            </div>
-            <p class="text-gray-600 text-[10px]">© 2025 ViralHeart — Trending video list appears first, then full album</p>
-        </div>
-    </footer>
+<!-- Lightbox for video playback -->
+<div id="lightbox" class="lightbox">
+    <div class="lightbox-content">
+        <button class="close-lightbox" onclick="closeLightbox()">✕</button>
+        <video id="lightbox-video" controls></video>
+    </div>
+</div>
 
-    <script>
-        // =============================================
-        // COMPLETE VIDEO DATASET - used for BOTH list and grid
-        // Replace with your actual video files and thumbnails
-        // =============================================
-        const allVideos = [
-            { title: "🔥 College Romance Goes Viral - 12M Views", thumbnail: "https://placehold.co/400x225/1e1e2e/f43f5e?text=College+Love", videoUrl: "videos/video1.mp4" },
-            { title: "❤️ Emotional Love Confession (TikTok Hit)", thumbnail: "https://placehold.co/400x225/2a1a2e/ec4899?text=Confession", videoUrl: "videos/video2.mp4" },
-            { title: "💋 Unexpected Kiss Compilation", thumbnail: "https://placehold.co/400x225/1a1a2e/a855f7?text=Kiss+Comp", videoUrl: "videos/video3.mp4" },
-            { title: "🌅 Sunset Proposal That Broke Internet", thumbnail: "https://placehold.co/400x225/261c2f/d946ef?text=Proposal", videoUrl: "videos/video4.mp4" },
-            { title: "🎁 Surprise Gift Reaction - Most Heartwarming", thumbnail: "https://placehold.co/400x225/1e1a2f/fb7185?text=Surprise", videoUrl: "videos/video5.mp4" },
-            { title: "✈️ Long Distance Love Reunion", thumbnail: "https://placehold.co/400x225/2c1c2c/fc5c7c?text=Reunion", videoUrl: "videos/video6.mp4" },
-            { title: "💒 Wedding Dance That Went Viral", thumbnail: "https://placehold.co/400x225/252525/e87979?text=Wedding", videoUrl: "videos/video7.mp4" },
-            { title: "📱 Best Friends to Lovers Story", thumbnail: "https://placehold.co/400x225/1f1a2e/f9a8d4?text=Friends+to+Lovers", videoUrl: "videos/video8.mp4" },
-            { title: "🎬 Romantic Movie Real Life Moment", thumbnail: "https://placehold.co/400x225/2d1b2e/f472b0?text=Movie+Moment", videoUrl: "videos/video9.mp4" },
-            { title: "🔥 Most Shared Couple Challenge", thumbnail: "https://placehold.co/400x225/1e293b/ff8c9e?text=Couple+Challenge", videoUrl: "videos/video10.mp4" },
-            { title: "💖 First Date That Melted Hearts", thumbnail: "https://placehold.co/400x225/2a1a2e/c084fc?text=First+Date", videoUrl: "videos/video11.mp4" },
-            { title: "📸 Cute Proposal Flashmob", thumbnail: "https://placehold.co/400x225/241f31/ff4d6d?text=Flashmob", videoUrl: "videos/video12.mp4" }
-        ];
-
-        // DOM elements
-        const listContainer = document.getElementById('video-list-container');
-        const gridContainer = document.getElementById('video-grid');
-        const lightbox = document.getElementById('lightbox');
-        const videoPlayer = document.getElementById('video-player');
-        const closeBtn = document.getElementById('close-lightbox');
-
-        // Helper: escape HTML
-        function escapeHtml(str) {
-            if (!str) return '';
-            return str.replace(/[&<>]/g, function(m) {
-                if (m === '&') return '&amp;';
-                if (m === '<') return '&lt;';
-                if (m === '>') return '&gt;';
-                return m;
-            });
+<script>
+    // Video data - Replace with your actual video files and thumbnails
+    const videos = [
+        {
+            title: "🔥 College Romance Goes Viral - 12M Views",
+            thumbnail: "https://placehold.co/200x200/1e1e2e/f43f5e?text=V1",
+            videoUrl: "videos/video1.mp4"
+        },
+        {
+            title: "❤️ Emotional Love Confession (TikTok Hit)",
+            thumbnail: "https://placehold.co/200x200/2a1a2e/ec4899?text=V2",
+            videoUrl: "videos/video2.mp4"
+        },
+        {
+            title: "💋 Unexpected Kiss Compilation",
+            thumbnail: "https://placehold.co/200x200/1a1a2e/a855f7?text=V3",
+            videoUrl: "videos/video3.mp4"
+        },
+        {
+            title: "🌅 Sunset Proposal That Broke Internet",
+            thumbnail: "https://placehold.co/200x200/261c2f/d946ef?text=V4",
+            videoUrl: "videos/video4.mp4"
+        },
+        {
+            title: "🎁 Surprise Gift Reaction - Most Heartwarming",
+            thumbnail: "https://placehold.co/200x200/1e1a2f/fb7185?text=V5",
+            videoUrl: "videos/video5.mp4"
+        },
+        {
+            title: "✈️ Long Distance Love Reunion",
+            thumbnail: "https://placehold.co/200x200/2c1c2c/fc5c7c?text=V6",
+            videoUrl: "videos/video6.mp4"
+        },
+        {
+            title: "💒 Wedding Dance That Went Viral",
+            thumbnail: "https://placehold.co/200x200/252525/e87979?text=V7",
+            videoUrl: "videos/video7.mp4"
+        },
+        {
+            title: "📱 Best Friends to Lovers Story",
+            thumbnail: "https://placehold.co/200x200/1f1a2e/f9a8d4?text=V8",
+            videoUrl: "videos/video8.mp4"
+        },
+        {
+            title: "🎬 Romantic Movie Real Life Moment",
+            thumbnail: "https://placehold.co/200x200/2d1b2e/f472b0?text=V9",
+            videoUrl: "videos/video9.mp4"
+        },
+        {
+            title: "🔥 Most Shared Couple Challenge",
+            thumbnail: "https://placehold.co/200x200/1e293b/ff8c9e?text=V10",
+            videoUrl: "videos/video10.mp4"
+        },
+        {
+            title: "💖 First Date That Melted Hearts",
+            thumbnail: "https://placehold.co/200x200/2a1a2e/c084fc?text=V11",
+            videoUrl: "videos/video11.mp4"
+        },
+        {
+            title: "📸 Cute Proposal Flashmob",
+            thumbnail: "https://placehold.co/200x200/241f31/ff4d6d?text=V12",
+            videoUrl: "videos/video12.mp4"
         }
+    ];
 
-        // ========== 1. RENDER TRENDING VIDEO LIST (PRIMARY - APPEARS FIRST) ==========
-        function renderVideoList() {
-            if (!listContainer) return;
-            listContainer.innerHTML = '';
+    const videoListEl = document.getElementById('video-list');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxVideo = document.getElementById('lightbox-video');
 
-            allVideos.forEach((video, idx) => {
-                const listItem = document.createElement('div');
-                listItem.className = 'video-list-item flex items-center gap-3 md:gap-4 bg-white/5 hover:bg-white/10 rounded-xl p-3 md:p-3.5 border-l-4 border-l-transparent transition-all duration-200';
-                listItem.setAttribute('data-idx', idx);
-                
-                const rankNumber = (idx + 1).toString().padStart(2, '0');
-                
-                listItem.innerHTML = `
-                    <div class="flex-shrink-0 w-8 text-center">
-                        <span class="list-number text-pink-400 font-bold text-base md:text-xl">${rankNumber}</span>
-                    </div>
-                    <div class="flex-shrink-0 w-12 h-12 md:w-14 md:h-14 rounded-lg overflow-hidden bg-zinc-800 relative">
-                        <img src="${video.thumbnail}" class="w-full h-full object-cover" loading="lazy" onerror="this.src='https://placehold.co/100x100/2d2d3a/f43f5e?text=V'">
-                        <div class="absolute inset-0 flex items-center justify-center bg-black/30">
-                            <i class="fa-solid fa-play text-white text-[10px] md:text-xs"></i>
-                        </div>
-                    </div>
-                    <div class="flex-1 min-w-0">
-                        <p class="list-title font-medium text-sm md:text-base text-gray-100 line-clamp-1">${escapeHtml(video.title)}</p>
-                        <div class="flex items-center gap-2 mt-0.5">
-                            <i class="fa-regular fa-eye text-[8px] text-gray-500"></i>
-                            <span class="text-[9px] md:text-[10px] text-gray-400">Trending viral</span>
-                            <i class="fa-solid fa-fire text-[7px] text-pink-400 ml-1"></i>
-                        </div>
-                    </div>
-                    <div class="flex-shrink-0 text-pink-400">
-                        <i class="fa-solid fa-chevron-right text-[10px] md:text-xs"></i>
-                    </div>
-                `;
-                
-                listItem.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    playVideo(idx);
-                });
-                
-                listContainer.appendChild(listItem);
-            });
-        }
+    // Render video list
+    function renderVideoList() {
+        videoListEl.innerHTML = '';
 
-        // ========== 2. RENDER VIDEO ALBUM GRID (SECONDARY - AFTER LIST) ==========
-        function renderGridAlbum() {
-            if (!gridContainer) return;
-            gridContainer.innerHTML = '';
+        videos.forEach((video, index) => {
+            const item = document.createElement('div');
+            item.className = 'video-item';
+            item.onclick = () => playVideo(index);
 
-            allVideos.forEach((video, idx) => {
-                const card = document.createElement('div');
-                card.className = 'video-card rounded-xl bg-zinc-900/60 border border-white/5 overflow-hidden';
-                
-                card.innerHTML = `
-                    <div class="relative">
-                        <img src="${video.thumbnail}" 
-                             class="w-full aspect-video object-cover" 
-                             loading="lazy"
-                             onerror="this.src='https://placehold.co/400x225/2d2d3a/f43f5e?text=Viral'"
-                             alt="${escapeHtml(video.title)}">
-                        <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 md:group-hover:opacity-100 transition-opacity duration-200">
-                            <div class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-pink-500/90 flex items-center justify-center shadow-lg">
-                                <i class="fa-solid fa-play text-white text-xs md:text-sm ml-0.5"></i>
-                            </div>
-                        </div>
-                        <div class="absolute top-2 left-2 bg-black/60 backdrop-blur-sm rounded-full px-1.5 py-0.5">
-                            <span class="text-[8px] md:text-[9px] font-bold text-pink-400">#${idx+1}</span>
-                        </div>
-                    </div>
-                    <div class="p-2 md:p-2.5">
-                        <p class="video-title text-gray-200 text-[10px] md:text-xs font-medium line-clamp-2">${escapeHtml(video.title)}</p>
-                        <div class="flex items-center gap-2 mt-1">
-                            <i class="fa-regular fa-eye text-gray-500 text-[8px]"></i>
-                            <span class="text-gray-500 text-[8px] md:text-[9px]">Trending</span>
-                        </div>
-                    </div>
-                `;
-                
-                card.addEventListener('click', () => playVideo(idx));
-                gridContainer.appendChild(card);
-            });
-        }
+            item.innerHTML = `
+                <div class="video-number">${(index + 1).toString().padStart(2, '0')}</div>
+                <div class="video-thumb">
+                    <img src="${video.thumbnail}" alt="thumbnail" onerror="this.parentElement.innerHTML='<i class=\'fa-solid fa-play\'></i>'">
+                </div>
+                <div class="video-info">
+                    <div class="video-title">${escapeHtml(video.title)}</div>
+                    <div class="video-badge"><i class="fa-regular fa-eye"></i> trending</div>
+                </div>
+                <div class="play-icon">
+                    <i class="fa-solid fa-circle-play"></i>
+                </div>
+            `;
 
-        // Shared video player function
-        function playVideo(index) {
-            const video = allVideos[index];
-            if (!video) return;
-            
-            videoPlayer.src = video.videoUrl;
-            videoPlayer.load();
-            lightbox.classList.remove('hidden');
-            lightbox.classList.add('flex');
-            document.body.classList.add('lightbox-open');
-            
-            videoPlayer.play().catch(e => console.log('Tap play to start'));
-        }
-
-        // Close lightbox
-        function closeLightbox() {
-            videoPlayer.pause();
-            videoPlayer.src = '';
-            lightbox.classList.add('hidden');
-            lightbox.classList.remove('flex');
-            document.body.classList.remove('lightbox-open');
-        }
-
-        // Event listeners
-        if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
-        
-        lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) closeLightbox();
+            videoListEl.appendChild(item);
         });
-        
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && lightbox.classList.contains('flex')) closeLightbox();
-        });
+    }
 
-        // Initialize: VIDEO LIST (FIRST) then GRID ALBUM (SECONDARY)
-        renderVideoList();   // TRENDING VIDEO LIST APPEARS FIRST ON PAGE
-        renderGridAlbum();   // Full album grid appears below
-        
-        console.log("ViralHeart — Trending Video List is FIRST content on page. Replace placeholders with actual video paths.");
-    </script>
+    // Play video function
+    function playVideo(index) {
+        const video = videos[index];
+        if (!video) return;
+
+        lightboxVideo.src = video.videoUrl;
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+
+        lightboxVideo.play().catch(e => {
+            console.log('Tap play to start');
+        });
+    }
+
+    // Close lightbox
+    function closeLightbox() {
+        lightboxVideo.pause();
+        lightboxVideo.src = '';
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    // Scroll to video list
+    function scrollToVideoList() {
+        document.getElementById('video-list').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Helper: escape HTML
+    function escapeHtml(str) {
+        if (!str) return '';
+        return str.replace(/[&<>]/g, function(m) {
+            if (m === '&') return '&amp;';
+            if (m === '<') return '&lt;';
+            if (m === '>') return '&gt;';
+            return m;
+        });
+    }
+
+    // Close lightbox on backdrop click
+    lightbox.addEventListener('click', function(e) {
+        if (e.target === lightbox) closeLightbox();
+    });
+
+    // ESC key to close
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && lightbox.classList.contains('active')) closeLightbox();
+    });
+
+    // Initialize
+    renderVideoList();
+</script>
+
 </body>
 </html>
