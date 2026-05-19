@@ -17,7 +17,7 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             background: #0a0a0a;
             color: #fff;
-            padding: 20px;
+            padding: 16px;
         }
 
         .container {
@@ -31,8 +31,8 @@
             flex-wrap: wrap;
             justify-content: center;
             gap: 15px;
-            margin-bottom: 30px;
-            padding: 10px 0;
+            margin-bottom: 25px;
+            padding: 8px 0;
         }
 
         .btn {
@@ -159,17 +159,17 @@
             opacity: 0.7;
         }
 
-        /* Photo Album List - Grid Layout */
+        /* Photo Album List - Big Thumbnails for Mobile */
         .photo-album {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
             margin-top: 10px;
         }
 
         .photo-item {
             background: rgba(255, 255, 255, 0.05);
-            border-radius: 16px;
+            border-radius: 20px;
             overflow: hidden;
             cursor: pointer;
             transition: all 0.2s ease;
@@ -181,6 +181,7 @@
             border-color: rgba(244, 63, 94, 0.4);
         }
 
+        /* BIG THUMBNAIL - Full width, tall image for mobile */
         .photo-img {
             width: 100%;
             aspect-ratio: 1 / 1;
@@ -189,17 +190,18 @@
         }
 
         .photo-caption {
-            padding: 8px;
-            font-size: 11px;
+            padding: 10px;
+            font-size: 12px;
             text-align: center;
-            color: #aaa;
+            color: #ccc;
+            font-weight: 500;
         }
 
         /* GIF Section - 3 images with space */
         .gif-section {
             display: flex;
             justify-content: space-between;
-            gap: 15px;
+            gap: 12px;
             margin: 20px 0;
         }
 
@@ -230,13 +232,13 @@
 
         .gif-title {
             padding: 10px;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 500;
             text-align: center;
             background: rgba(0,0,0,0.5);
         }
 
-        /* Lightbox for fullscreen */
+        /* Lightbox for video playback */
         .lightbox {
             display: none;
             position: fixed;
@@ -261,8 +263,7 @@
             position: relative;
         }
 
-        .lightbox-content video,
-        .lightbox-content img {
+        .lightbox-content video {
             width: 100%;
             border-radius: 16px;
             background: #000;
@@ -284,43 +285,7 @@
             opacity: 1;
         }
 
-        .footer {
-            text-align: center;
-            margin-top: 30px;
-            font-size: 11px;
-            color: #333;
-        }
-
-        @media (max-width: 500px) {
-            body {
-                padding: 15px;
-            }
-            .btn {
-                padding: 10px 20px;
-                font-size: 14px;
-            }
-            .video-thumb {
-                width: 50px;
-                height: 50px;
-            }
-            .video-title {
-                font-size: 13px;
-            }
-            .video-number {
-                font-size: 16px;
-                min-width: 35px;
-            }
-            .photo-caption {
-                font-size: 9px;
-                padding: 6px;
-            }
-            .gif-title {
-                font-size: 10px;
-                padding: 7px;
-            }
-        }
-
-        /* Fullscreen thumbnail on mobile click */
+        /* FULLSCREEN MODAL FOR BIG THUMBNAILS - Mobile full screen JPG show */
         .fullscreen-modal {
             display: none;
             position: fixed;
@@ -341,7 +306,7 @@
 
         .fullscreen-modal img {
             max-width: 100%;
-            max-height: 80%;
+            max-height: 90%;
             object-fit: contain;
         }
 
@@ -352,10 +317,66 @@
             background: rgba(0,0,0,0.7);
             border: none;
             color: white;
-            font-size: 30px;
-            padding: 10px 15px;
+            font-size: 28px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1101;
+        }
+
+        .fullscreen-close i {
+            font-size: 24px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 11px;
+            color: #333;
+        }
+
+        @media (max-width: 500px) {
+            body {
+                padding: 12px;
+            }
+            .btn {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+            .video-thumb {
+                width: 55px;
+                height: 55px;
+            }
+            .video-title {
+                font-size: 13px;
+            }
+            .video-number {
+                font-size: 16px;
+                min-width: 35px;
+            }
+            .photo-caption {
+                font-size: 11px;
+                padding: 8px;
+            }
+            .gif-title {
+                font-size: 9px;
+                padding: 8px;
+            }
+            .section-title {
+                font-size: 16px;
+                margin: 20px 0 12px 0;
+            }
+        }
+
+        /* For larger screens, photo album can be 3 columns but mobile first 2 columns */
+        @media (min-width: 600px) {
+            .photo-album {
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
     </style>
 </head>
@@ -376,8 +397,8 @@
     <div class="section-title"><i class="fa-solid fa-list-ul"></i> Trending Video List</div>
     <div class="video-list" id="video-list"></div>
 
-    <!-- Photo Album List Section -->
-    <div class="section-title"><i class="fa-solid fa-images"></i> Photo Album</div>
+    <!-- Photo Album List Section - BIG THUMBNAILS -->
+    <div class="section-title"><i class="fa-solid fa-images"></i> Photo Album <span style="font-size: 12px; color:#f43f5e;">(tap image for full screen)</span></div>
     <div class="photo-album" id="photo-album"></div>
 
     <!-- Online Video Chat - 3 GIF Images with spacing -->
@@ -397,10 +418,12 @@
     </div>
 </div>
 
-<!-- Fullscreen modal for photo thumbnails (mobile full screen) -->
+<!-- FULLSCREEN MODAL for BIG JPG PHOTO THUMBNAILS - Mobile full screen show -->
 <div id="fullscreen-modal" class="fullscreen-modal" onclick="closeFullscreen()">
-    <button class="fullscreen-close" onclick="closeFullscreen()">✕</button>
-    <img id="fullscreen-img" src="" alt="Fullscreen">
+    <button class="fullscreen-close" onclick="closeFullscreen()">
+        <i class="fa-regular fa-circle-xmark"></i>
+    </button>
+    <img id="fullscreen-img" src="" alt="Full Screen Photo">
 </div>
 
 <script>
@@ -416,14 +439,14 @@
         { title: "📱 Best Friends to Lovers Story", thumbnail: "https://placehold.co/400x400/1f1a2e/f9a8d4?text=V8", videoUrl: "videos/video8.mp4" }
     ];
 
-    // ==================== PHOTO ALBUM DATA ====================
+    // ==================== PHOTO ALBUM DATA - Big JPG Images (High quality) ====================
     const photos = [
-        { url: "https://placehold.co/600x600/1e1e2e/f43f5e?text=Photo+1", caption: "Romantic Moment" },
-        { url: "https://placehold.co/600x600/2a1a2e/ec4899?text=Photo+2", caption: "Sunset Love" },
-        { url: "https://placehold.co/600x600/1a1a2e/a855f7?text=Photo+3", caption: "Cute Couple" },
-        { url: "https://placehold.co/600x600/261c2f/d946ef?text=Photo+4", caption: "Kiss Scene" },
-        { url: "https://placehold.co/600x600/1e1a2f/fb7185?text=Photo+5", caption: "Proposal" },
-        { url: "https://placehold.co/600x600/2c1c2c/fc5c7c?text=Photo+6", caption: "Wedding Dance" }
+        { url: "https://placehold.co/800x800/1e1e2e/f43f5e?text=Romantic+Love+1", caption: "💕 Romantic Sunset" },
+        { url: "https://placehold.co/800x800/2a1a2e/ec4899?text=Couple+2", caption: "💖 Couple Goals" },
+        { url: "https://placehold.co/800x800/1a1a2e/a855f7?text=Kiss+3", caption: "💋 Sweet Kiss" },
+        { url: "https://placehold.co/800x800/261c2f/d946ef?text=Proposal+4", caption: "💍 Proposal Moment" },
+        { url: "https://placehold.co/800x800/1e1a2f/fb7185?text=Wedding+5", caption: "💒 Wedding Dance" },
+        { url: "https://placehold.co/800x800/2c1c2c/fc5c7c?text=Romantic+6", caption: "🌹 Rose Day" }
     ];
 
     // ==================== GIF DATA (Online Video Chat - 3 GIFs) ====================
@@ -454,7 +477,7 @@
             item.innerHTML = `
                 <div class="video-number">${(index + 1).toString().padStart(2, '0')}</div>
                 <div class="video-thumb">
-                    <img src="${video.thumbnail}" alt="thumbnail" onerror="this.parentElement.innerHTML='<i class=\'fa-solid fa-play\'></i>'">
+                    <img src="${video.thumbnail}" alt="thumbnail" loading="lazy" onerror="this.parentElement.innerHTML='<i class=\'fa-solid fa-play\'></i>'">
                 </div>
                 <div class="video-info">
                     <div class="video-title">${escapeHtml(video.title)}</div>
@@ -469,17 +492,18 @@
         });
     }
 
-    // ========== RENDER PHOTO ALBUM (click opens fullscreen) ==========
+    // ========== RENDER PHOTO ALBUM - BIG THUMBNAILS (tap opens full screen) ==========
     function renderPhotoAlbum() {
         photoAlbumEl.innerHTML = '';
 
         photos.forEach((photo, index) => {
             const item = document.createElement('div');
             item.className = 'photo-item';
+            // Open full screen with big JPG image
             item.onclick = () => openFullscreen(photo.url);
 
             item.innerHTML = `
-                <img src="${photo.url}" class="photo-img" alt="photo" loading="lazy" onerror="this.src='https://placehold.co/400x400/2d2d3a/f43f5e?text=Photo'">
+                <img src="${photo.url}" class="photo-img" alt="photo" loading="lazy" onerror="this.src='https://placehold.co/800x800/2d2d3a/f43f5e?text=Love+Photo'">
                 <div class="photo-caption">${escapeHtml(photo.caption)}</div>
             `;
 
@@ -528,7 +552,7 @@
         document.body.style.overflow = '';
     }
 
-    // ========== FULLSCREEN FOR PHOTO THUMBNAILS (Mobile Full Screen Show) ==========
+    // ========== FULLSCREEN FOR BIG JPG PHOTO THUMBNAILS (Mobile Full Screen Show) ==========
     function openFullscreen(imageUrl) {
         fullscreenImg.src = imageUrl;
         fullscreenModal.classList.add('active');
@@ -562,7 +586,7 @@
         if (e.target === lightbox) closeLightbox();
     });
 
-    // ESC key to close both
+    // ESC key to close both lightbox and fullscreen
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
             if (lightbox.classList.contains('active')) closeLightbox();
