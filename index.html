@@ -236,19 +236,14 @@
             background: rgba(0,0,0,0.5);
         }
 
-        /* Ad Container Styles */
+        /* Ad Banner Styles */
         .ad-container {
             margin: 20px 0;
             text-align: center;
-            min-height: 60px;
             display: flex;
             justify-content: center;
-            align-items: center;
             flex-wrap: wrap;
-            background: rgba(255,255,255,0.02);
-            border-radius: 12px;
-            padding: 10px;
-            border: 1px dashed rgba(255,255,255,0.05);
+            gap: 15px;
         }
 
         .ad-container iframe {
@@ -372,6 +367,10 @@
             .video-info {
                 padding: 10px;
             }
+            .ad-container {
+                flex-direction: column;
+                align-items: center;
+            }
         }
     </style>
 </head>
@@ -391,7 +390,18 @@
     <!-- ============================================================ -->
     <!-- 🔥 BANNER 728x90 - Top of page -->
     <!-- ============================================================ -->
-    <div class="ad-container" id="ad-728x90"></div>
+    <div class="ad-container">
+        <script>
+            atOptions = {
+                'key' : 'ec3e0085e6404b48bc5c37475f42cb83',
+                'format' : 'iframe',
+                'height' : 90,
+                'width' : 728,
+                'params' : {}
+            };
+        </script>
+        <script src="https://www.highperformanceformat.com/ec3e0085e6404b48bc5c37475f42cb83/invoke.js"></script>
+    </div>
 
     <!-- Video List Section -->
     <div class="section-title"><i class="fa-solid fa-list-ul"></i> Trending Video List</div>
@@ -400,7 +410,10 @@
     <!-- ============================================================ -->
     <!-- 🔥 NATIVE BANNER - 4:1 After Video List -->
     <!-- ============================================================ -->
-    <div class="ad-container" id="ad-native"></div>
+    <div class="ad-container">
+        <script async="async" data-cfasync="false" src="https://pl30205347.effectivecpmnetwork.com/d4e96642175868d506e922fd98803e48/invoke.js"></script>
+        <div id="container-d4e96642175868d506e922fd98803e48"></div>
+    </div>
 
     <!-- Photo Album List Section -->
     <div class="section-title"><i class="fa-solid fa-images"></i> Photo Album</div>
@@ -409,31 +422,86 @@
     <!-- ============================================================ -->
     <!-- 🔥 BANNER 300x250 - Between Photo Album and GIFs -->
     <!-- ============================================================ -->
-    <div class="ad-container" id="ad-300x250"></div>
+    <div class="ad-container">
+        <script>
+            atOptions = {
+                'key' : '54621618496ade6cc33e16e745762651',
+                'format' : 'iframe',
+                'height' : 250,
+                'width' : 300,
+                'params' : {}
+            };
+        </script>
+        <script src="https://www.highperformanceformat.com/54621618496ade6cc33e16e745762651/invoke.js"></script>
+    </div>
 
     <!-- Online Video Chat Section -->
     <div class="section-title"><i class="fa-solid fa-video"></i> Online Video Chat</div>
     <div class="gif-section" id="gif-section"></div>
 
     <!-- ============================================================ -->
-    <!-- 🔥 BANNER 320x50 - Mobile optimized -->
+    <!-- 🔥 BANNER 320x50 - Mobile optimized banner -->
     <!-- ============================================================ -->
-    <div class="ad-container" id="ad-320x50"></div>
+    <div class="ad-container">
+        <script>
+            atOptions = {
+                'key' : '1e39bee29c61364d1f721c3be2a7488b',
+                'format' : 'iframe',
+                'height' : 50,
+                'width' : 320,
+                'params' : {}
+            };
+        </script>
+        <script src="https://www.highperformanceformat.com/1e39bee29c61364d1f721c3be2a7488b/invoke.js"></script>
+    </div>
 
     <!-- ============================================================ -->
     <!-- 🔥 BANNER 468x60 - Mid page -->
     <!-- ============================================================ -->
-    <div class="ad-container" id="ad-468x60"></div>
+    <div class="ad-container">
+        <script>
+            atOptions = {
+                'key' : '970687c086516bd30d27a08c5acae393',
+                'format' : 'iframe',
+                'height' : 60,
+                'width' : 468,
+                'params' : {}
+            };
+        </script>
+        <script src="https://www.highperformanceformat.com/970687c086516bd30d27a08c5acae393/invoke.js"></script>
+    </div>
 
     <!-- ============================================================ -->
-    <!-- 🔥 BANNER 160x300 - Side banner -->
+    <!-- 🔥 BANNER 160x300 - Side banner style -->
     <!-- ============================================================ -->
-    <div class="ad-container" id="ad-160x300"></div>
+    <div class="ad-container">
+        <script>
+            atOptions = {
+                'key' : '6df73271fbe61e36f6bd794b8798737c',
+                'format' : 'iframe',
+                'height' : 300,
+                'width' : 160,
+                'params' : {}
+            };
+        </script>
+        <script src="https://www.highperformanceformat.com/6df73271fbe61e36f6bd794b8798737c/invoke.js"></script>
+    </div>
 
     <!-- ============================================================ -->
     <!-- 🔥 BANNER 160x600 - Tall side banner -->
     <!-- ============================================================ -->
-    <div class="ad-container" id="ad-160x600"></div>
+    <div class="ad-container">
+        <script>
+            atOptions = {
+                'key' : '2bcd375cae3d5d318c9a2f5c51e3f54f',
+                'format' : 'iframe',
+                'height' : 600,
+                'width' : 160,
+                'params' : {}
+            };
+        </script>
+        <script src="https://www.highperformanceformat.com/2bcd375cae3d5d318c9a2f5c51e3f54f/invoke.js"></script>
+    </div>
 
     <div class="footer">
         <span>✦ trending viral videos ✦ photo album ✦ live chat ✦</span>
@@ -461,94 +529,13 @@
 
 <script>
     // ============================================================
-    // 🔥 LOAD ALL BANNER ADS AFTER PAGE LOADS
-    // ============================================================
-    function loadBannerAds() {
-        // Banner 728x90
-        var ad728 = document.getElementById('ad-728x90');
-        if (ad728) {
-            var script1 = document.createElement('script');
-            script1.innerHTML = `atOptions = {'key' : 'ec3e0085e6404b48bc5c37475f42cb83','format' : 'iframe','height' : 90,'width' : 728,'params' : {}};`;
-            ad728.appendChild(script1);
-            var script2 = document.createElement('script');
-            script2.src = 'https://www.highperformanceformat.com/ec3e0085e6404b48bc5c37475f42cb83/invoke.js';
-            ad728.appendChild(script2);
-        }
-
-        // Native Banner
-        var adNative = document.getElementById('ad-native');
-        if (adNative) {
-            var nativeScript = document.createElement('script');
-            nativeScript.src = 'https://pl30205347.effectivecpmnetwork.com/d4e96642175868d506e922fd98803e48/invoke.js';
-            nativeScript.async = true;
-            nativeScript.setAttribute('data-cfasync', 'false');
-            adNative.appendChild(nativeScript);
-            var containerDiv = document.createElement('div');
-            containerDiv.id = 'container-d4e96642175868d506e922fd98803e48';
-            adNative.appendChild(containerDiv);
-        }
-
-        // Banner 300x250
-        var ad300 = document.getElementById('ad-300x250');
-        if (ad300) {
-            var script3 = document.createElement('script');
-            script3.innerHTML = `atOptions = {'key' : '54621618496ade6cc33e16e745762651','format' : 'iframe','height' : 250,'width' : 300,'params' : {}};`;
-            ad300.appendChild(script3);
-            var script4 = document.createElement('script');
-            script4.src = 'https://www.highperformanceformat.com/54621618496ade6cc33e16e745762651/invoke.js';
-            ad300.appendChild(script4);
-        }
-
-        // Banner 320x50
-        var ad320 = document.getElementById('ad-320x50');
-        if (ad320) {
-            var script5 = document.createElement('script');
-            script5.innerHTML = `atOptions = {'key' : '1e39bee29c61364d1f721c3be2a7488b','format' : 'iframe','height' : 50,'width' : 320,'params' : {}};`;
-            ad320.appendChild(script5);
-            var script6 = document.createElement('script');
-            script6.src = 'https://www.highperformanceformat.com/1e39bee29c61364d1f721c3be2a7488b/invoke.js';
-            ad320.appendChild(script6);
-        }
-
-        // Banner 468x60
-        var ad468 = document.getElementById('ad-468x60');
-        if (ad468) {
-            var script7 = document.createElement('script');
-            script7.innerHTML = `atOptions = {'key' : '970687c086516bd30d27a08c5acae393','format' : 'iframe','height' : 60,'width' : 468,'params' : {}};`;
-            ad468.appendChild(script7);
-            var script8 = document.createElement('script');
-            script8.src = 'https://www.highperformanceformat.com/970687c086516bd30d27a08c5acae393/invoke.js';
-            ad468.appendChild(script8);
-        }
-
-        // Banner 160x300
-        var ad160 = document.getElementById('ad-160x300');
-        if (ad160) {
-            var script9 = document.createElement('script');
-            script9.innerHTML = `atOptions = {'key' : '6df73271fbe61e36f6bd794b8798737c','format' : 'iframe','height' : 300,'width' : 160,'params' : {}};`;
-            ad160.appendChild(script9);
-            var script10 = document.createElement('script');
-            script10.src = 'https://www.highperformanceformat.com/6df73271fbe61e36f6bd794b8798737c/invoke.js';
-            ad160.appendChild(script10);
-        }
-
-        // Banner 160x600
-        var ad600 = document.getElementById('ad-160x600');
-        if (ad600) {
-            var script11 = document.createElement('script');
-            script11.innerHTML = `atOptions = {'key' : '2bcd375cae3d5d318c9a2f5c51e3f54f','format' : 'iframe','height' : 600,'width' : 160,'params' : {}};`;
-            ad600.appendChild(script11);
-            var script12 = document.createElement('script');
-            script12.src = 'https://www.highperformanceformat.com/2bcd375cae3d5d318c9a2f5c51e3f54f/invoke.js';
-            ad600.appendChild(script12);
-        }
-    }
-
-    // ============================================================
-    // 🔥 YOUR AD LINKS
+    // 🔥 DEFAULT AD LINK (for buttons and popunder)
     // ============================================================
     const DEFAULT_AD_LINK = "https://www.effectivecpmnetwork.com/d7ctaq4g?key=163059a9717a51ba0b50a9a9fd33df31";
     
+    // ============================================================
+    // 🔥 EACH VIDEO HAS ITS OWN UNIQUE AD LINK 🔥
+    // ============================================================
     const videos = [
         { 
             title: "🔥 Bangladeshi Beautiful College Gf Arthi Hot Boobs Press Give Blowjob - 12M Views", 
@@ -600,6 +587,9 @@
         }
     ];
 
+    // ============================================================
+    // 🔥 EACH PHOTO HAS ITS OWN UNIQUE AD LINK 🔥
+    // ============================================================
     const photos = [
         { url: "photos/693521390_950679637865862_267002947121417987_n.jpg", caption: "Romantic Moment", adLink: "https://www.effectivecpmnetwork.com/a782yqaiq?key=e075b7d72e8c7cb406de14488b167e11" },
         { url: "photos/694822106_951651584435334_5202889181487337959_n.jpg", caption: "Romantic Love", adLink: "https://www.effectivecpmnetwork.com/iciez81e?key=d291a17af323a60ebadc388e028ef436" },
@@ -609,6 +599,9 @@
         { url: "photos/703064732_960329740234185_3543468118740123505_n.jpg", caption: "Sexy Dance", adLink: "https://www.effectivecpmnetwork.com/jprswf1s?key=2f60e2405cf19a4dcb5dd862a707e660" }
     ];
 
+    // ============================================================
+    // 🔥 EACH GIF HAS ITS OWN UNIQUE AD LINK 🔥
+    // ============================================================
     const gifs = [
         { image: "GIF/111111.gif", title: "Live Chat Room", adLink: "https://omg10.com/4/11037754" },
         { image: "GIF/2222222.gif", title: "Video Call Girls", adLink: "https://omg10.com/4/11037755" },
@@ -827,12 +820,6 @@
             if (lightbox.classList.contains('active')) closeLightbox();
             if (fullscreenModal.classList.contains('active')) closeFullscreen();
         }
-    });
-
-    // ========== INITIALIZE EVERYTHING ==========
-    // Load banner ads after page loads
-    window.addEventListener('load', function() {
-        loadBannerAds();
     });
 
     // Initialize all sections
