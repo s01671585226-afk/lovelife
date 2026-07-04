@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     
     <!-- ============================================================ -->
-    <!-- 🔥 POPUNDER - HTTPS -->
+    <!-- 🔥 POPUNDER - Right before closing </head> tag -->
     <!-- ============================================================ -->
     <script src="https://pl30204007.effectivecpmnetwork.com/93/25/c2/9325c20ea8822ad833adae3f6c46157b.js"></script>
     
@@ -31,6 +31,7 @@
             margin: 0 auto;
         }
 
+        /* Header with buttons */
         .header {
             display: flex;
             flex-wrap: wrap;
@@ -77,6 +78,7 @@
             transform: translateY(-2px);
         }
 
+        /* Section Title */
         .section-title {
             font-size: 18px;
             font-weight: 600;
@@ -85,6 +87,7 @@
             border-left: 4px solid #f43f5e;
         }
 
+        /* VIDEO LIST - 2 COLUMN GRID */
         .video-list {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -158,6 +161,7 @@
             gap: 4px;
         }
 
+        /* Photo Album List */
         .photo-album {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -193,6 +197,7 @@
             color: #aaa;
         }
 
+        /* GIF Section */
         .gif-section {
             display: flex;
             justify-content: space-between;
@@ -231,6 +236,7 @@
             background: rgba(0,0,0,0.5);
         }
 
+        /* Ad Banner Styles */
         .ad-container {
             margin: 20px 0;
             text-align: center;
@@ -238,17 +244,13 @@
             justify-content: center;
             flex-wrap: wrap;
             gap: 15px;
-            min-height: 60px;
-            background: rgba(255,255,255,0.03);
-            border-radius: 12px;
-            padding: 10px;
-            border: 1px dashed rgba(255,255,255,0.1);
         }
 
         .ad-container iframe {
             max-width: 100%;
         }
 
+        /* Lightbox for video playback */
         .lightbox {
             display: none;
             position: fixed;
@@ -298,6 +300,7 @@
             color: #333;
         }
 
+        /* Fullscreen modal for photos */
         .fullscreen-modal {
             display: none;
             position: fixed;
@@ -367,7 +370,6 @@
             .ad-container {
                 flex-direction: column;
                 align-items: center;
-                min-height: 50px;
             }
         }
     </style>
@@ -375,6 +377,7 @@
 <body>
 
 <div class="container">
+    <!-- Two Buttons: Join Now & Watch Now -->
     <div class="header">
         <a href="#" class="btn btn-primary" id="joinNowBtn">
             <i class="fa-solid fa-user-plus"></i> Join Now
@@ -385,9 +388,9 @@
     </div>
 
     <!-- ============================================================ -->
-    <!-- 🔥 BANNER 728x90 - HTTPS -->
+    <!-- 🔥 BANNER 728x90 - Top of page -->
     <!-- ============================================================ -->
-    <div class="ad-container" id="ad-728x90">
+    <div class="ad-container">
         <script>
             atOptions = {
                 'key' : 'ec3e0085e6404b48bc5c37475f42cb83',
@@ -397,7 +400,7 @@
                 'params' : {}
             };
         </script>
-        <script src="https://www.highperformanceformat.com/ec3e0085e6404b48bc5c37475f42cb83/invoke.js" async></script>
+        <script src="https://www.highperformanceformat.com/ec3e0085e6404b48bc5c37475f42cb83/invoke.js"></script>
     </div>
 
     <!-- Video List Section -->
@@ -405,9 +408,9 @@
     <div class="video-list" id="video-list"></div>
 
     <!-- ============================================================ -->
-    <!-- 🔥 NATIVE BANNER - HTTPS -->
+    <!-- 🔥 NATIVE BANNER - 4:1 After Video List -->
     <!-- ============================================================ -->
-    <div class="ad-container" id="ad-native">
+    <div class="ad-container">
         <script async="async" data-cfasync="false" src="https://pl30205347.effectivecpmnetwork.com/d4e96642175868d506e922fd98803e48/invoke.js"></script>
         <div id="container-d4e96642175868d506e922fd98803e48"></div>
     </div>
@@ -417,9 +420,9 @@
     <div class="photo-album" id="photo-album"></div>
 
     <!-- ============================================================ -->
-    <!-- 🔥 BANNER 300x250 - HTTPS -->
+    <!-- 🔥 BANNER 300x250 - Between Photo Album and GIFs -->
     <!-- ============================================================ -->
-    <div class="ad-container" id="ad-300x250">
+    <div class="ad-container">
         <script>
             atOptions = {
                 'key' : '54621618496ade6cc33e16e745762651',
@@ -429,7 +432,7 @@
                 'params' : {}
             };
         </script>
-        <script src="https://www.highperformanceformat.com/54621618496ade6cc33e16e745762651/invoke.js" async></script>
+        <script src="https://www.highperformanceformat.com/54621618496ade6cc33e16e745762651/invoke.js"></script>
     </div>
 
     <!-- Online Video Chat Section -->
@@ -437,9 +440,9 @@
     <div class="gif-section" id="gif-section"></div>
 
     <!-- ============================================================ -->
-    <!-- 🔥 BANNER 320x50 - HTTPS -->
+    <!-- 🔥 BANNER 320x50 - Mobile optimized banner -->
     <!-- ============================================================ -->
-    <div class="ad-container" id="ad-320x50">
+    <div class="ad-container">
         <script>
             atOptions = {
                 'key' : '1e39bee29c61364d1f721c3be2a7488b',
@@ -449,13 +452,13 @@
                 'params' : {}
             };
         </script>
-        <script src="https://www.highperformanceformat.com/1e39bee29c61364d1f721c3be2a7488b/invoke.js" async></script>
+        <script src="https://www.highperformanceformat.com/1e39bee29c61364d1f721c3be2a7488b/invoke.js"></script>
     </div>
 
     <!-- ============================================================ -->
-    <!-- 🔥 BANNER 468x60 - HTTPS -->
+    <!-- 🔥 BANNER 468x60 - Mid page -->
     <!-- ============================================================ -->
-    <div class="ad-container" id="ad-468x60">
+    <div class="ad-container">
         <script>
             atOptions = {
                 'key' : '970687c086516bd30d27a08c5acae393',
@@ -465,13 +468,13 @@
                 'params' : {}
             };
         </script>
-        <script src="https://www.highperformanceformat.com/970687c086516bd30d27a08c5acae393/invoke.js" async></script>
+        <script src="https://www.highperformanceformat.com/970687c086516bd30d27a08c5acae393/invoke.js"></script>
     </div>
 
     <!-- ============================================================ -->
-    <!-- 🔥 BANNER 160x300 - HTTPS -->
+    <!-- 🔥 BANNER 160x300 - Side banner style -->
     <!-- ============================================================ -->
-    <div class="ad-container" id="ad-160x300">
+    <div class="ad-container">
         <script>
             atOptions = {
                 'key' : '6df73271fbe61e36f6bd794b8798737c',
@@ -481,13 +484,13 @@
                 'params' : {}
             };
         </script>
-        <script src="https://www.highperformanceformat.com/6df73271fbe61e36f6bd794b8798737c/invoke.js" async></script>
+        <script src="https://www.highperformanceformat.com/6df73271fbe61e36f6bd794b8798737c/invoke.js"></script>
     </div>
 
     <!-- ============================================================ -->
-    <!-- 🔥 BANNER 160x600 - HTTPS -->
+    <!-- 🔥 BANNER 160x600 - Tall side banner -->
     <!-- ============================================================ -->
-    <div class="ad-container" id="ad-160x600">
+    <div class="ad-container">
         <script>
             atOptions = {
                 'key' : '2bcd375cae3d5d318c9a2f5c51e3f54f',
@@ -497,7 +500,7 @@
                 'params' : {}
             };
         </script>
-        <script src="https://www.highperformanceformat.com/2bcd375cae3d5d318c9a2f5c51e3f54f/invoke.js" async></script>
+        <script src="https://www.highperformanceformat.com/2bcd375cae3d5d318c9a2f5c51e3f54f/invoke.js"></script>
     </div>
 
     <div class="footer">
@@ -520,16 +523,19 @@
 </div>
 
 <!-- ============================================================ -->
-<!-- 🔥 SOCIAL BAR - HTTPS -->
+<!-- 🔥 SOCIAL BAR - Right above closing </body> tag -->
 <!-- ============================================================ -->
 <script src="https://pl30204034.effectivecpmnetwork.com/87/3d/20/873d2093d10d39282a8aad60a87db498.js"></script>
 
 <script>
     // ============================================================
-    // 🔥 YOUR AD LINKS - PRESERVED
+    // 🔥 DEFAULT AD LINK (for buttons and popunder)
     // ============================================================
     const DEFAULT_AD_LINK = "https://www.effectivecpmnetwork.com/d7ctaq4g?key=163059a9717a51ba0b50a9a9fd33df31";
     
+    // ============================================================
+    // 🔥 EACH VIDEO HAS ITS OWN UNIQUE AD LINK 🔥
+    // ============================================================
     const videos = [
         { 
             title: "🔥 Bangladeshi Beautiful College Gf Arthi Hot Boobs Press Give Blowjob - 12M Views", 
@@ -581,6 +587,9 @@
         }
     ];
 
+    // ============================================================
+    // 🔥 EACH PHOTO HAS ITS OWN UNIQUE AD LINK 🔥
+    // ============================================================
     const photos = [
         { url: "photos/693521390_950679637865862_267002947121417987_n.jpg", caption: "Romantic Moment", adLink: "https://www.effectivecpmnetwork.com/a782yqaiq?key=e075b7d72e8c7cb406de14488b167e11" },
         { url: "photos/694822106_951651584435334_5202889181487337959_n.jpg", caption: "Romantic Love", adLink: "https://www.effectivecpmnetwork.com/iciez81e?key=d291a17af323a60ebadc388e028ef436" },
@@ -590,6 +599,9 @@
         { url: "photos/703064732_960329740234185_3543468118740123505_n.jpg", caption: "Sexy Dance", adLink: "https://www.effectivecpmnetwork.com/jprswf1s?key=2f60e2405cf19a4dcb5dd862a707e660" }
     ];
 
+    // ============================================================
+    // 🔥 EACH GIF HAS ITS OWN UNIQUE AD LINK 🔥
+    // ============================================================
     const gifs = [
         { image: "GIF/111111.gif", title: "Live Chat Room", adLink: "https://omg10.com/4/11037754" },
         { image: "GIF/2222222.gif", title: "Video Call Girls", adLink: "https://omg10.com/4/11037755" },
@@ -768,6 +780,7 @@
         fullscreenImg.src = '';
     }
 
+    // Helper: escape HTML
     function escapeHtml(str) {
         if (!str) return '';
         return str.replace(/[&<>]/g, function(m) {
